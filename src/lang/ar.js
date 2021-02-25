@@ -185,6 +185,6 @@ const ar = {
     // acl
     aclError: 'تم الرفض!',
   },
-};
+}
 
-export default ar;
+export default ar

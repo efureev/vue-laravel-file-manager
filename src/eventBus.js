@@ -1,6 +1,6 @@
-import Vue from 'vue';
+import Vue from 'vue'
 
 // EventBus
-const EventBus = new Vue();
+const EventBus = new Vue()
 
-export default EventBus;
+export default EventBus

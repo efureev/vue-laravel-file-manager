@@ -188,6 +188,6 @@ const zh_CN = {
     // acl
     aclError: 'Access denied!',
   },
-};
+}
 
-export default zh_CN;
+export default zh_CN

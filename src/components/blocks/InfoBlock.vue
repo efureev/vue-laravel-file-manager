@@ -1,49 +1,49 @@
 <template>
-    <div class="justify-content-between fm-info-block">
-        <div class="col-auto">
+  <div class="justify-content-between fm-info-block">
+    <div class="col-auto">
             <span v-show="selectedCount">
                 {{ `${lang.info.selected} ${selectedCount}` }}
                 {{ `${lang.info.selectedSize} ${selectedFilesSize}` }}
             </span>
-            <span v-show="!selectedCount">
+      <span v-show="!selectedCount">
                 {{ `${lang.info.directories} ${directoriesCount}` }}
                 {{ `${lang.info.files} ${filesCount}` }}
                 {{ `${lang.info.size} ${filesSize}`}}
             </span>
+    </div>
+    <div class="col-4">
+      <!-- Progress Bar -->
+      <div class="progress" v-show="progressBar">
+        <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
+             v-bind:aria-valuenow="progressBar"
+             aria-valuemin="0"
+             aria-valuemax="100"
+             v-bind:style="{width: progressBar + '%' }">
+          {{ progressBar }}%
         </div>
-        <div class="col-4">
-            <!-- Progress Bar -->
-            <div class="progress" v-show="progressBar">
-                <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-                     v-bind:aria-valuenow="progressBar"
-                     aria-valuemin="0"
-                     aria-valuemax="100"
-                     v-bind:style="{width: progressBar + '%' }">
-                    {{ progressBar }}%
-                </div>
-            </div>
-        </div>
-        <div class="col-auto text-right">
+      </div>
+    </div>
+    <div class="col-auto text-right">
             <span v-show="loadingSpinner">
                 <i class="fas fa-spinner fa-pulse"/>
             </span>
-            <span v-show="clipboardType"
-                  v-on:click="showModal('Clipboard')"
-                  v-bind:title="[ lang.clipboard.title + ' - ' + lang.clipboard[clipboardType] ]">
+      <span v-show="clipboardType"
+            v-on:click="showModal('Clipboard')"
+            v-bind:title="[ lang.clipboard.title + ' - ' + lang.clipboard[clipboardType] ]">
                 <i class="far fa-clipboard"/>
             </span>
-            <span v-on:click="showModal('Status')"
-                  v-bind:class="[hasErrors ? 'text-danger' : 'text-success']"
-                  v-bind:title="lang.modal.status.title">
+      <span v-on:click="showModal('Status')"
+            v-bind:class="[hasErrors ? 'text-danger' : 'text-success']"
+            v-bind:title="lang.modal.status.title">
                 <i class="fas fa-info-circle"/>
             </span>
-        </div>
     </div>
+  </div>
 </template>
 
 <script>
-import translate from '../../mixins/translate';
-import helper from '../../mixins/helper';
+import translate from '../../mixins/translate'
+import helper from '../../mixins/helper'
 
 export default {
   name: 'InfoBlock',
@@ -54,7 +54,7 @@ export default {
      * @returns {default.computed.activeManager|(function())|string|activeManager}
      */
     activeManager() {
-      return this.$store.state.fm.activeManager;
+      return this.$store.state.fm.activeManager
     },
 
     /**
@@ -62,7 +62,7 @@ export default {
      * @returns {number}
      */
     progressBar() {
-      return this.$store.state.fm.messages.actionProgress;
+      return this.$store.state.fm.messages.actionProgress
     },
 
     /**
@@ -70,7 +70,7 @@ export default {
      * @returns {boolean}
      */
     hasErrors() {
-      return !!this.$store.state.fm.messages.errors.length;
+      return !!this.$store.state.fm.messages.errors.length
     },
 
     /**
@@ -78,7 +78,7 @@ export default {
      * @returns {*}
      */
     filesCount() {
-      return this.$store.getters[`fm/${this.activeManager}/filesCount`];
+      return this.$store.getters[`fm/${this.activeManager}/filesCount`]
     },
 
     /**
@@ -86,7 +86,7 @@ export default {
      * @returns {*}
      */
     directoriesCount() {
-      return this.$store.getters[`fm/${this.activeManager}/directoriesCount`];
+      return this.$store.getters[`fm/${this.activeManager}/directoriesCount`]
     },
 
     /**
@@ -94,7 +94,7 @@ export default {
      * @returns {*|string}
      */
     filesSize() {
-      return this.bytesToHuman(this.$store.getters[`fm/${this.activeManager}/filesSize`]);
+      return this.bytesToHuman(this.$store.getters[`fm/${this.activeManager}/filesSize`])
     },
 
     /**
@@ -102,7 +102,7 @@ export default {
      * @returns {*}
      */
     selectedCount() {
-      return this.$store.getters[`fm/${this.activeManager}/selectedCount`];
+      return this.$store.getters[`fm/${this.activeManager}/selectedCount`]
     },
 
     /**
@@ -110,7 +110,7 @@ export default {
      * @returns {*|string}
      */
     selectedFilesSize() {
-      return this.bytesToHuman(this.$store.getters[`fm/${this.activeManager}/selectedFilesSize`]);
+      return this.bytesToHuman(this.$store.getters[`fm/${this.activeManager}/selectedFilesSize`])
     },
 
     /**
@@ -118,7 +118,7 @@ export default {
      * @returns {null}
      */
     clipboardType() {
-      return this.$store.state.fm.clipboard.type;
+      return this.$store.state.fm.clipboard.type
     },
 
     /**
@@ -126,7 +126,7 @@ export default {
      * @returns {number}
      */
     loadingSpinner() {
-      return this.$store.state.fm.messages.loading;
+      return this.$store.state.fm.messages.loading
     },
   },
   methods: {
@@ -138,28 +138,28 @@ export default {
       this.$store.commit('fm/modal/setModalState', {
         modalName,
         show: true,
-      });
+      })
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
-    .fm-info-block {
-        display: flex;
-        margin-right: -15px;
-        margin-left: -15px;
-        padding-top: 0.2rem;
-        padding-bottom: 0.4rem;
-        border-bottom: 1px solid #6d757d;
+.fm-info-block {
+  display: flex;
+  margin-right: -15px;
+  margin-left: -15px;
+  padding-top: 0.2rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #6d757d;
 
-        .progress {
-            margin-top: 0.3rem;
-        }
+  .progress {
+    margin-top: 0.3rem;
+  }
 
-        .text-right > span {
-            padding-left: 0.5rem;
-            cursor: pointer;
-        }
-    }
+  .text-right > span {
+    padding-left: 0.5rem;
+    cursor: pointer;
+  }
+}
 </style>

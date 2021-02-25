@@ -5,7 +5,7 @@ export default {
    * @param disk
    */
   setDisk(state, disk) {
-    state.selectedDisk = disk;
+    state.selectedDisk = disk
   },
 
   /**
@@ -14,8 +14,13 @@ export default {
    * @param data
    */
   setDirectoryContent(state, data) {
-    state.directories = data.directories;
-    state.files = data.files;
+    state.directories = data.directories
+    state.files = data.files
+  },
+
+  clearDirectoryContent(state) {
+    state.directories = []
+    state.files = []
   },
 
   /**
@@ -24,7 +29,7 @@ export default {
    * @param directory
    */
   setSelectedDirectory(state, directory) {
-    state.selectedDirectory = directory;
+    state.selectedDirectory = directory
   },
 
   /**
@@ -34,7 +39,7 @@ export default {
    * @param path
    */
   setSelected(state, { type, path }) {
-    state.selected[type].push(path);
+    state.selected[type].push(path)
   },
 
   /**
@@ -43,8 +48,10 @@ export default {
    * @param arrayIndex
    */
   removeSelected(state, { type, path }) {
-    const itemIndex = state.selected[type].indexOf(path);
-    if (itemIndex !== -1) state.selected[type].splice(itemIndex, 1);
+    const itemIndex = state.selected[type].indexOf(path)
+    if (itemIndex !== -1) {
+      state.selected[type].splice(itemIndex, 1)
+    }
   },
 
   /**
@@ -54,9 +61,9 @@ export default {
    * @param path
    */
   changeSelected(state, { type, path }) {
-    state.selected.directories = [];
-    state.selected.files = [];
-    state.selected[type].push(path);
+    state.selected.directories = []
+    state.selected.files = []
+    state.selected[type].push(path)
   },
 
   /**
@@ -64,8 +71,8 @@ export default {
    * @param state
    */
   resetSelected(state) {
-    state.selected.directories = [];
-    state.selected.files = [];
+    state.selected.directories = []
+    state.selected.files = []
   },
 
   /**
@@ -74,7 +81,7 @@ export default {
    * @param newFile
    */
   addNewFile(state, newFile) {
-    state.files.push(newFile);
+    state.files.push(newFile)
   },
 
   /**
@@ -83,8 +90,8 @@ export default {
    * @param file
    */
   updateFile(state, file) {
-    const itemIndex = state.files.findIndex((el) => el.basename === file.basename);
-    if (itemIndex !== -1) state.files[itemIndex] = file;
+    const itemIndex = state.files.findIndex((el) => el.basename === file.basename)
+    if (itemIndex !== -1) state.files[itemIndex] = file
   },
 
   /**
@@ -93,7 +100,7 @@ export default {
    * @param newDirectory
    */
   addNewDirectory(state, newDirectory) {
-    state.directories.push(newDirectory);
+    state.directories.push(newDirectory)
   },
 
   /**
@@ -101,7 +108,7 @@ export default {
    * @param state
    */
   pointerBack(state) {
-    state.historyPointer -= 1;
+    state.historyPointer -= 1
   },
 
   /**
@@ -109,7 +116,7 @@ export default {
    * @param state
    */
   pointerForward(state) {
-    state.historyPointer += 1;
+    state.historyPointer += 1
   },
 
   /**
@@ -120,12 +127,12 @@ export default {
   addToHistory(state, path) {
     if (state.historyPointer < state.history.length - 1) {
       // erase next elements in the history
-      state.history.splice(state.historyPointer + 1, Number.MAX_VALUE);
+      state.history.splice(state.historyPointer + 1, Number.MAX_VALUE)
     }
     // add new path
-    state.history.push(path);
+    state.history.push(path)
     // change history pointer
-    state.historyPointer += 1;
+    state.historyPointer += 1
   },
 
   /**
@@ -133,8 +140,8 @@ export default {
    * @param state
    */
   resetHistory(state) {
-    state.history = [null];
-    state.historyPointer = 0;
+    state.history = [null]
+    state.historyPointer = 0
   },
 
   /**
@@ -144,7 +151,7 @@ export default {
    * @param type
    */
   setView(state, type) {
-    state.viewType = type;
+    state.viewType = type
   },
 
   /**
@@ -153,7 +160,7 @@ export default {
    * @param field
    */
   setSortField(state, field) {
-    state.sort.field = field;
+    state.sort.field = field
   },
 
   /**
@@ -162,7 +169,7 @@ export default {
    * @param direction
    */
   setSortDirection(state, direction) {
-    state.sort.direction = direction;
+    state.sort.direction = direction
   },
 
   /**
@@ -170,8 +177,8 @@ export default {
    * @param state
    */
   resetSortSettings(state) {
-    state.sort.field = 'name';
-    state.sort.direction = 'up';
+    state.sort.field = 'name'
+    state.sort.direction = 'up'
   },
 
   /**
@@ -180,11 +187,11 @@ export default {
    */
   sortByName(state) {
     if (state.sort.direction === 'up') {
-      state.directories.sort((a, b) => a.basename.localeCompare(b.basename));
-      state.files.sort((a, b) => a.basename.localeCompare(b.basename));
+      state.directories.sort((a, b) => a.basename.localeCompare(b.basename))
+      state.files.sort((a, b) => a.basename.localeCompare(b.basename))
     } else {
-      state.directories.sort((a, b) => b.basename.localeCompare(a.basename));
-      state.files.sort((a, b) => b.basename.localeCompare(a.basename));
+      state.directories.sort((a, b) => b.basename.localeCompare(a.basename))
+      state.files.sort((a, b) => b.basename.localeCompare(a.basename))
     }
   },
 
@@ -193,12 +200,12 @@ export default {
    * @param state
    */
   sortBySize(state) {
-    state.directories.sort((a, b) => a.basename.localeCompare(b.basename));
+    state.directories.sort((a, b) => a.basename.localeCompare(b.basename))
 
     if (state.sort.direction === 'up') {
-      state.files.sort((a, b) => a.size - b.size);
+      state.files.sort((a, b) => a.size - b.size)
     } else {
-      state.files.sort((a, b) => b.size - a.size);
+      state.files.sort((a, b) => b.size - a.size)
     }
   },
 
@@ -207,12 +214,12 @@ export default {
    * @param state
    */
   sortByType(state) {
-    state.directories.sort((a, b) => a.basename.localeCompare(b.basename));
+    state.directories.sort((a, b) => a.basename.localeCompare(b.basename))
 
     if (state.sort.direction === 'up') {
-      state.files.sort((a, b) => a.extension.localeCompare(b.extension));
+      state.files.sort((a, b) => a.extension.localeCompare(b.extension))
     } else {
-      state.files.sort((a, b) => b.extension.localeCompare(a.extension));
+      state.files.sort((a, b) => b.extension.localeCompare(a.extension))
     }
   },
 
@@ -222,11 +229,11 @@ export default {
    */
   sortByDate(state) {
     if (state.sort.direction === 'up') {
-      state.directories.sort((a, b) => a.timestamp - b.timestamp);
-      state.files.sort((a, b) => a.timestamp - b.timestamp);
+      state.directories.sort((a, b) => a.timestamp - b.timestamp)
+      state.files.sort((a, b) => a.timestamp - b.timestamp)
     } else {
-      state.directories.sort((a, b) => b.timestamp - a.timestamp);
-      state.files.sort((a, b) => b.timestamp - a.timestamp);
+      state.directories.sort((a, b) => b.timestamp - a.timestamp)
+      state.files.sort((a, b) => b.timestamp - a.timestamp)
     }
   },
-};
+}

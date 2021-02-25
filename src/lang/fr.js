@@ -185,6 +185,6 @@ const fr = {
     // acl
     aclError: 'Accès refusé!',
   },
-};
+}
 
-export default fr;
+export default fr

@@ -186,6 +186,6 @@ const fa = {
     // acl
     aclError: 'دسترسی امکان پذیر نیست!',
   },
-};
+}
 
-export default fa;
+export default fa

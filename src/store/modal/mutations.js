@@ -6,8 +6,8 @@ export default {
    * @param modalName
    */
   setModalState(state, { show, modalName }) {
-    state.showModal = show;
-    state.modalName = modalName;
+    state.showModal = show
+    state.modalName = modalName
   },
 
   /**
@@ -15,8 +15,8 @@ export default {
    * @param state
    */
   clearModal(state) {
-    state.showModal = false;
-    state.modalName = null;
+    state.showModal = false
+    state.modalName = null
   },
 
   /**
@@ -25,6 +25,6 @@ export default {
    * @param height
    */
   setModalBlockHeight(state, height) {
-    state.modalBlockHeight = height;
+    state.modalBlockHeight = height
   },
-};
+}

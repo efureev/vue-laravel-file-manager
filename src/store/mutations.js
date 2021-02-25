@@ -6,7 +6,7 @@ export default {
    * @param disks
    */
   setDisks(state, disks) {
-    state.disks = disks;
+    state.disks = disks
   },
 
   /**
@@ -18,10 +18,10 @@ export default {
    * @param files
    */
   setClipboard(state, { type, disk, directories, files }) {
-    state.clipboard.type = type;
-    state.clipboard.disk = disk;
-    state.clipboard.directories = directories;
-    state.clipboard.files = files;
+    state.clipboard.type = type
+    state.clipboard.disk = disk
+    state.clipboard.directories = directories
+    state.clipboard.files = files
   },
 
   /**
@@ -31,11 +31,11 @@ export default {
    * @param path
    */
   truncateClipboard(state, { type, path }) {
-    const itemIndex = state.clipboard[type].indexOf(path);
+    const itemIndex = state.clipboard[type].indexOf(path)
 
-    if (itemIndex !== -1) state.clipboard[type].splice(itemIndex, 1);
+    if (itemIndex !== -1) state.clipboard[type].splice(itemIndex, 1)
     if (!state.clipboard.directories.length && !state.clipboard.files.length) {
-      state.clipboard.type = null;
+      state.clipboard.type = null
     }
   },
 
@@ -44,10 +44,10 @@ export default {
    * @param state
    */
   resetClipboard(state) {
-    state.clipboard.type = null;
-    state.clipboard.disk = null;
-    state.clipboard.directories = [];
-    state.clipboard.files = [];
+    state.clipboard.type = null
+    state.clipboard.disk = null
+    state.clipboard.directories = []
+    state.clipboard.files = []
   },
 
   /**
@@ -56,7 +56,7 @@ export default {
    * @param managerName
    */
   setActiveManager(state, managerName) {
-    state.activeManager = managerName;
+    state.activeManager = managerName
   },
 
   /**
@@ -65,7 +65,7 @@ export default {
    * @param callback
    */
   setFileCallBack(state, callback) {
-    state.fileCallback = callback;
+    state.fileCallback = callback
   },
 
   /**
@@ -73,7 +73,7 @@ export default {
    * @param state
    */
   screenToggle(state) {
-    state.fullScreen = !state.fullScreen;
+    state.fullScreen = !state.fullScreen
   },
 
   /**
@@ -81,15 +81,15 @@ export default {
    * @param state
    */
   resetState(state) {
-    state.activeManager = 'left';
+    state.activeManager = 'left'
     state.clipboard = {
       type: null,
       disk: null,
       directories: [],
       files: [],
-    };
-    state.disks = [];
-    state.fileCallback = null;
-    state.fullScreen = false;
+    }
+    state.disks = []
+    state.fileCallback = null
+    state.fullScreen = false
   },
-};
+}

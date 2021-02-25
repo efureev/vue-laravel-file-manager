@@ -6,15 +6,15 @@ export default {
      * @returns {string}
      */
     bytesToHuman(bytes) {
-      const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+      const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
 
-      if (bytes === 0) return '0 Bytes';
+      if (bytes === 0) return '0 Bytes'
 
-      const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10);
+      const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
 
-      if (i === 0) return `${bytes} ${sizes[i]}`;
+      if (i === 0) return `${bytes} ${sizes[i]}`
 
-      return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`;
+      return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`
     },
 
     /**
@@ -24,11 +24,11 @@ export default {
      */
     timestampToDate(timestamp) {
       // if date not defined
-      if (timestamp === undefined) return '-';
+      if (timestamp === undefined) return '-'
 
-      const date = new Date(timestamp * 1000);
+      const date = new Date(timestamp * 1000)
 
-      return date.toLocaleString(this.$store.state.fm.settings.lang);
+      return date.toLocaleString(this.$store.state.fm.settings.lang)
     },
 
     /**
@@ -105,14 +105,14 @@ export default {
         'application/vnd.openxmlformats-officedocument.wordprocessingml': 'fa-file-word',
         'application/vnd.openxmlformats-officedocument.spreadsheetml': 'fa-file-excel',
         'application/vnd.openxmlformats-officedocument.presentationml': 'fa-file-powerpoint',
-      };
+      }
 
       if (mimeTypes[mime] !== undefined) {
-        return mimeTypes[mime];
+        return mimeTypes[mime]
       }
 
       // file blank
-      return 'fa-file';
+      return 'fa-file'
     },
 
     /**
@@ -206,14 +206,14 @@ export default {
         pptm: 'fa-file-powerpoint',
         xps: 'fa-file-powerpoint',
         potx: 'fa-file-powerpoint',
-      };
+      }
 
       if (extension && extensionTypes[extension.toLowerCase()] !== undefined) {
-        return extensionTypes[extension.toLowerCase()];
+        return extensionTypes[extension.toLowerCase()]
       }
 
       // blank file
-      return 'fa-file';
+      return 'fa-file'
     },
   },
-};
+}

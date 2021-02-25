@@ -186,6 +186,6 @@ const zh_TW = {
     // acl
     aclError: '存取拒絕!',
   },
-};
+}
 
-export default zh_TW;
+export default zh_TW

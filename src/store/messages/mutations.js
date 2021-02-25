@@ -7,8 +7,8 @@ export default {
    * @param message
    */
   setActionResult(state, { status, message }) {
-    state.actionResult.status = status;
-    state.actionResult.message = message;
+    state.actionResult.status = status
+    state.actionResult.message = message
   },
 
   /**
@@ -16,8 +16,8 @@ export default {
    * @param state
    */
   clearActionResult(state) {
-    state.actionResult.status = null;
-    state.actionResult.message = null;
+    state.actionResult.status = null
+    state.actionResult.message = null
   },
 
   /**
@@ -26,7 +26,7 @@ export default {
    * @param progress
    */
   setProgress(state, progress) {
-    state.actionProgress = progress;
+    state.actionProgress = progress
   },
 
   /**
@@ -34,7 +34,7 @@ export default {
    * @param state
    */
   clearProgress(state) {
-    state.actionProgress = 0;
+    state.actionProgress = 0
   },
 
   /**
@@ -42,7 +42,7 @@ export default {
    * @param state
    */
   addLoading(state) {
-    state.loading += 1;
+    state.loading += 1
   },
 
   /**
@@ -50,7 +50,7 @@ export default {
    * @param state
    */
   subtractLoading(state) {
-    state.loading -= 1;
+    state.loading -= 1
   },
 
   /**
@@ -58,7 +58,7 @@ export default {
    * @param state
    */
   clearLoading(state) {
-    state.loading = 0;
+    state.loading = 0
   },
 
   /**
@@ -67,7 +67,7 @@ export default {
    * @param error
    */
   setError(state, error) {
-    state.errors.push(error);
+    state.errors.push(error)
   },
 
   /**
@@ -75,6 +75,6 @@ export default {
    * @param state
    */
   clearErrors(state) {
-    state.errors = [];
+    state.errors = []
   },
-};
+}

@@ -1,4 +1,4 @@
-import mutations from './mutations';
+import mutations from './mutations'
 
 export default {
   namespaced: true,
@@ -18,7 +18,7 @@ export default {
 
       // application error messages
       errors: [],
-    };
+    }
   },
   mutations,
-};
+}

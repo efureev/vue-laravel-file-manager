@@ -5,7 +5,7 @@ export default {
      */
     focus: {
       inserted(el) {
-        el.focus();
+        el.focus()
       },
     },
   },
@@ -15,7 +15,7 @@ export default {
      * @returns {default.computed.activeManager|(function())|string|activeManager}
      */
     activeManager() {
-      return this.$store.state.fm.activeManager;
+      return this.$store.state.fm.activeManager
     },
   },
   methods: {
@@ -26,8 +26,8 @@ export default {
       this.$store.commit('fm/modal/setModalState', {
         modalName: null,
         show: false,
-      });
+      })
     },
 
   },
-};
+}

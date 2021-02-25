@@ -185,6 +185,6 @@ const ru = {
     // acl
     aclError: 'В доступе отказано!',
   },
-};
+}
 
-export default ru;
+export default ru

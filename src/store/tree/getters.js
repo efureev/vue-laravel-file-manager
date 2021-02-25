@@ -15,9 +15,9 @@ export default {
    */
   directories(state, getters, rootState) {
     if (rootState.fm.settings.hiddenFiles) {
-      return state.directories;
+      return state.directories
     }
 
-    return state.directories.filter((item) => item.basename.match(new RegExp('^([^.]).*', 'i')));
+    return state.directories.filter((item) => item.basename.match(new RegExp('^([^.]).*', 'i')))
   },
-};
+}

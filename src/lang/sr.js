@@ -186,6 +186,6 @@ const sr = {
     // acl
     aclError: 'Pristup odbijen!',
   },
-};
+}
 
-export default sr;
+export default sr

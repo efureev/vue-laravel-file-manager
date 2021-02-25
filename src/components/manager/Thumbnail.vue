@@ -1,24 +1,24 @@
 <template>
-    <figure class="fm-thumbnail">
-        <transition name="fade" mode="out-in">
-            <i v-if="!src" class="far fa-file-image fa-5x pb-2"/>
-            <img v-else
-                 v-bind:src="src"
-                 v-bind:alt="file.filename"
-                 class="img-thumbnail">
-        </transition>
-    </figure>
+  <figure class="fm-thumbnail">
+    <transition name="fade" mode="out-in">
+      <i v-if="!src" class="far fa-file-image fa-5x pb-2"/>
+      <img v-else
+           v-bind:src="src"
+           v-bind:alt="file.filename"
+           class="img-thumbnail">
+    </transition>
+  </figure>
 </template>
 
 <script>
-import GET from '../../http/get';
+import GET from '../../http/get'
 
 export default {
   name: 'Thumbnail',
   data() {
     return {
       src: '',
-    };
+    }
   },
   props: {
     disk: {
@@ -39,21 +39,21 @@ export default {
         (entries, obs) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              this.loadImage();
-              obs.unobserve(this.$el);
+              this.loadImage()
+              obs.unobserve(this.$el)
             }
-          });
+          })
         },
         {
           root: null,
           threshold: '0.5',
         },
-      );
+      )
 
       // add observer for template
-      observer.observe(this.$el);
+      observer.observe(this.$el)
     } else {
-      this.loadImage();
+      this.loadImage()
     }
   },
   computed: {
@@ -62,7 +62,7 @@ export default {
      * @return {*}
      */
     auth() {
-      return this.$store.getters['fm/settings/authHeader'];
+      return this.$store.getters['fm/settings/authHeader']
     },
   },
   methods: {
@@ -76,35 +76,36 @@ export default {
           this.disk,
           this.file.path,
         ).then((response) => {
-          const mimeType = response.headers['content-type'].toLowerCase();
-          const imgBase64 = Buffer.from(response.data, 'binary').toString('base64');
+          const mimeType = response.headers['content-type'].toLowerCase()
+          const imgBase64 = Buffer.from(response.data, 'binary').toString('base64')
 
-          this.src = `data:${mimeType};base64,${imgBase64}`;
-        });
+          this.src = `data:${mimeType};base64,${imgBase64}`
+        })
       } else {
-        this.src = `${this.$store.getters['fm/settings/baseUrl']}thumbnails?disk=${this.disk}&path=${encodeURIComponent(this.file.path)}&v=${this.file.timestamp}`;
+        this.src = GET.makeURL(`/thumbnails?disk=${this.disk}&path=${encodeURIComponent(this.file.path)}&v=${this.file.timestamp}`)
       }
     },
   },
-};
+}
 </script>
 
 <style lang="scss">
-    .fm-thumbnail {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+.fm-thumbnail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-        .img-thumbnail {
-            width: 88px;
-            height: 88px;
-        }
+  .img-thumbnail {
+    width: 88px;
+    height: 88px;
+  }
 
-        .fade-enter-active, .fade-leave-active {
-            transition: opacity .3s;
-        }
-        .fade-enter, .fade-leave-to {
-            opacity: 0;
-        }
-    }
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .3s;
+  }
+
+  .fade-enter, .fade-leave-to {
+    opacity: 0;
+  }
+}
 </style>

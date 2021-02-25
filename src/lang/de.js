@@ -185,6 +185,6 @@ const de = {
     // acl
     aclError: 'Zugriff verweigert!',
   },
-};
+}
 
-export default de;
+export default de

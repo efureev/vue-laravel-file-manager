@@ -7,10 +7,10 @@ export default {
    */
   files(state, getters, rootState) {
     if (rootState.fm.settings.hiddenFiles) {
-      return state.files;
+      return state.files
     }
 
-    return state.files.filter((item) => item.basename.match(new RegExp('^([^.]).*', 'i')));
+    return state.files.filter((item) => item.basename.match(new RegExp('^([^.]).*', 'i')))
   },
 
   /**
@@ -22,10 +22,10 @@ export default {
    */
   directories(state, getters, rootState) {
     if (rootState.fm.settings.hiddenFiles) {
-      return state.directories;
+      return state.directories
     }
 
-    return state.directories.filter((item) => item.basename.match(new RegExp('^([^.]).*', 'i')));
+    return state.directories.filter((item) => item.basename.match(new RegExp('^([^.]).*', 'i')))
   },
 
   /**
@@ -35,7 +35,7 @@ export default {
    * @returns {*}
    */
   filesCount(state, getters) {
-    return getters.files.length;
+    return getters.files.length
   },
 
   /**
@@ -45,7 +45,7 @@ export default {
    * @returns {*}
    */
   directoriesCount(state, getters) {
-    return getters.directories.length;
+    return getters.directories.length
   },
 
   /**
@@ -56,10 +56,10 @@ export default {
    */
   filesSize(state, getters) {
     if (getters.files.length) {
-      return getters.files.reduce((previous, current) => previous + Number(current.size), 0);
+      return getters.files.reduce((previous, current) => previous + Number(current.size), 0)
     }
 
-    return 0;
+    return 0
   },
 
   /**
@@ -69,7 +69,7 @@ export default {
    * @returns {number}
    */
   selectedCount(state, getters) {
-    return getters.selectedList.length;
+    return getters.selectedList.length
   },
 
   /**
@@ -78,13 +78,13 @@ export default {
    * @returns {number}
    */
   selectedFilesSize(state) {
-    const selectedFiles = state.files.filter((file) => state.selected.files.includes(file.path));
+    const selectedFiles = state.files.filter((file) => state.selected.files.includes(file.path))
 
     if (selectedFiles.length) {
-      return selectedFiles.reduce((previous, current) => previous + Number(current.size), 0);
+      return selectedFiles.reduce((previous, current) => previous + Number(current.size), 0)
     }
 
-    return 0;
+    return 0
   },
 
   /**
@@ -92,11 +92,11 @@ export default {
    * @param state
    */
   selectedList(state) {
-    const selectedDirectories = state.directories.filter((directory) => state.selected.directories.includes(directory.path));
+    const selectedDirectories = state.directories.filter((directory) => state.selected.directories.includes(directory.path))
 
-    const selectedFiles = state.files.filter((file) => state.selected.files.includes(file.path));
+    const selectedFiles = state.files.filter((file) => state.selected.files.includes(file.path))
 
-    return selectedDirectories.concat(selectedFiles);
+    return selectedDirectories.concat(selectedFiles)
   },
 
   /**
@@ -106,10 +106,10 @@ export default {
    */
   breadcrumb(state) {
     if (state.selectedDirectory) {
-      return state.selectedDirectory.split('/');
+      return state.selectedDirectory.split('/')
     }
 
-    return null;
+    return null
   },
 
   /**
@@ -123,4 +123,4 @@ export default {
    * @param state
    */
   fileExist: (state) => (basename) => state.files.some((el) => el.basename === basename),
-};
+}

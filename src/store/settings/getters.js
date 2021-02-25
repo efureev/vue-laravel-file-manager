@@ -2,19 +2,19 @@ export default {
   /**
    * Base URL
    * @param state
-   * @returns {default.baseUrl|(function(*))|string|*|string|null}
+   * @returns {default.baseURL|(function(*))|string|*|string|null}
    */
-  baseUrl(state) {
-    return state.baseUrl;
+  /*baseURL(state) {
+    return state.baseURL
   },
-
+*/
   /**
    * Headers
    * @param state
    * @return {*}
    */
   headers(state) {
-    return state.headers;
+    return state.headers
   },
 
   /**
@@ -23,6 +23,10 @@ export default {
    * @return {boolean}
    */
   authHeader(state) {
-    return Object.prototype.hasOwnProperty.call(state.headers, 'Authorization');
+    return Object.prototype.hasOwnProperty.call(state.headers, 'Authorization')
   },
-};
+
+  translateMap(state) {
+    return state.translations[state.lang || 'en']
+  },
+}

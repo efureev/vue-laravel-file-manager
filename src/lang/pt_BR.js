@@ -186,6 +186,6 @@ const pt_BR = {
     // acl
     aclError: 'Acesso negado!',
   },
-};
+}
 
-export default pt_BR;
+export default pt_BR

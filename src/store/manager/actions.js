@@ -1,5 +1,5 @@
 /* eslint-disable object-curly-newline */
-import GET from '../../http/get';
+import GET from '@/http/get'
 
 export default {
   /**
@@ -11,31 +11,32 @@ export default {
    * @param path
    * @param history
    * @returns {Promise}
+   * @changed
    */
   selectDirectory({ state, commit, dispatch, rootState }, { path, history }) {
-    // reset content
-    commit('setDirectoryContent', { directories: [], files: [] });
+    commit('clearDirectoryContent')
 
     // get content for the selected directory
-    return GET.content(state.selectedDisk, path).then((response) => {
-      if (response.data.result.status === 'success') {
-        commit('resetSelected');
-        commit('resetSortSettings');
-        commit('setDirectoryContent', response.data);
-        commit('setSelectedDirectory', path);
+    return GET.content(state.selectedDisk, path)
+      .then((response) => {
+        commit('resetSelected')
+        commit('resetSortSettings')
+        commit('setDirectoryContent', response.data())
+        commit('setSelectedDirectory', path)
 
-        if (history) commit('addToHistory', path);
+        if (history) {
+          commit('addToHistory', path)
+        }
 
         // if directories tree is shown, not main directory and directory have subdirectories
         if (
           rootState.fm.settings.windowsConfig === 2
           && path
-          && response.data.directories.length
+          && response.data().directories.length
         ) {
-          dispatch('fm/tree/showSubdirectories', path, { root: true });
+          dispatch('fm/tree/showSubdirectories', path, { root: true })
         }
-      }
-    });
+      })
   },
 
   /**
@@ -43,24 +44,27 @@ export default {
    * @param state
    * @param commit
    * @param dispatch
+   * @changed
    */
   refreshDirectory({ state, commit, dispatch }) {
-    GET.content(state.selectedDisk, state.selectedDirectory).then((response) => {
-      commit('resetSelected');
-      commit('resetSortSettings');
-      commit('resetHistory');
+    GET.content(state.selectedDisk, state.selectedDirectory)
+      .then((response) => {
+        commit('resetSelected')
+        commit('resetSortSettings')
+        commit('resetHistory')
 
-      // add to history selected directory
-      if (state.selectedDirectory) commit('addToHistory', state.selectedDirectory);
+        // add to history selected directory
+        if (state.selectedDirectory) {
+          commit('addToHistory', state.selectedDirectory)
+        }
 
-      if (response.data.result.status === 'success') {
-        commit('setDirectoryContent', response.data);
-      } else if (response.data.result.status === 'danger') {
+        commit('setDirectoryContent', response.data())
+      })
+      .catch(error => {
         // If directory not found try to load main directory
-        commit('setSelectedDirectory', null);
-        dispatch('refreshDirectory');
-      }
-    });
+        commit('setSelectedDirectory', null)
+        dispatch('refreshDirectory')
+      })
   },
 
   /**
@@ -73,8 +77,8 @@ export default {
     dispatch('selectDirectory', {
       path: state.history[state.historyPointer - 1],
       history: false,
-    });
-    commit('pointerBack');
+    })
+    commit('pointerBack')
   },
 
   /**
@@ -87,8 +91,8 @@ export default {
     dispatch('selectDirectory', {
       path: state.history[state.historyPointer + 1],
       history: false,
-    });
-    commit('pointerForward');
+    })
+    commit('pointerForward')
   },
 
   /**
@@ -99,30 +103,30 @@ export default {
    */
   sortBy({ state, commit }, { field, direction }) {
     if (state.sort.field === field && !direction) {
-      commit('setSortDirection', state.sort.direction === 'up' ? 'down' : 'up');
+      commit('setSortDirection', state.sort.direction === 'up' ? 'down' : 'up')
     } else if (direction) {
-      commit('setSortDirection', direction);
-      commit('setSortField', field);
+      commit('setSortDirection', direction)
+      commit('setSortField', field)
     } else {
-      commit('setSortDirection', 'up');
-      commit('setSortField', field);
+      commit('setSortDirection', 'up')
+      commit('setSortField', field)
     }
     // sort by field type
     switch (field) {
       case 'name':
-        commit('sortByName');
-        break;
+        commit('sortByName')
+        break
       case 'size':
-        commit('sortBySize');
-        break;
+        commit('sortBySize')
+        break
       case 'type':
-        commit('sortByType');
-        break;
+        commit('sortByType')
+        break
       case 'date':
-        commit('sortByDate');
-        break;
+        commit('sortByDate')
+        break
       default:
-        break;
+        break
     }
   },
-};
+}

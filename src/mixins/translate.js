@@ -12,10 +12,10 @@ export default {
       )) {
         return this.$store.state.fm.settings.translations[
           this.$store.state.fm.settings.lang
-        ];
+          ]
       }
       // default translate - en
-      return this.$store.state.fm.settings.translations.en;
+      return this.$store.state.fm.settings.translations.en
     },
   },
-};
+}

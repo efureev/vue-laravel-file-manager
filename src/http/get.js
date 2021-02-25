@@ -1,4 +1,4 @@
-import HTTP from './axios';
+import request from '@/request'
 
 export default {
   /**
@@ -6,7 +6,7 @@ export default {
    * @returns {*}
    */
   initialize() {
-    return HTTP.get('initialize');
+    return request().get('initialize')
   },
 
   /**
@@ -15,8 +15,8 @@ export default {
    * @param path
    * @returns {*}
    */
-  tree(disk, path) {
-    return HTTP.get('tree', { params: { disk, path } });
+  tree(disk, path = null) {
+    return request().get('tree', { params: { disk, path } })
   },
 
   /**
@@ -25,7 +25,7 @@ export default {
    * @returns {*}
    */
   selectDisk(disk) {
-    return HTTP.get('select-disk', { params: { disk } });
+    return request().get('select-disk', { params: { disk } })
   },
 
   /**
@@ -35,15 +35,15 @@ export default {
    * @returns {*}
    */
   content(disk, path) {
-    return HTTP.get('content', { params: { disk, path } });
+    return request().get('content', { params: { disk, path } })
   },
 
   /**
    * Item properties
    */
   /* properties(disk, path) {
-    return HTTP.get('properties', { params: { disk, path } });
-  }, */
+   return HTTP.get('properties', { params: { disk, path } });
+   }, */
 
   /**
    * URL
@@ -52,7 +52,7 @@ export default {
    * @returns {*}
    */
   url(disk, path) {
-    return HTTP.get('url', { params: { disk, path } });
+    return request().get('url', { params: { disk, path } })
   },
 
   /**
@@ -62,7 +62,7 @@ export default {
    * @returns {*}
    */
   getFile(disk, path) {
-    return HTTP.get('download', { params: { disk, path } });
+    return request().get('download', { params: { disk, path } })
   },
 
   /**
@@ -72,10 +72,10 @@ export default {
    * @returns {*}
    */
   getFileArrayBuffer(disk, path) {
-    return HTTP.get('download', {
+    return request().get('download', {
       responseType: 'arraybuffer',
       params: { disk, path },
-    });
+    })
   },
 
   /**
@@ -85,10 +85,10 @@ export default {
    * @returns {*}
    */
   thumbnail(disk, path) {
-    return HTTP.get('thumbnails', {
+    return request().get('thumbnails', {
       responseType: 'arraybuffer',
       params: { disk, path },
-    });
+    })
   },
 
   /**
@@ -98,10 +98,10 @@ export default {
    * @return {*}
    */
   preview(disk, path) {
-    return HTTP.get('preview', {
+    return request().get('preview', {
       responseType: 'arraybuffer',
       params: { disk, path },
-    });
+    })
   },
 
   /**
@@ -111,9 +111,17 @@ export default {
    * @return {*}
    */
   download(disk, path) {
-    return HTTP.get('download', {
+    return request().get('download', {
       responseType: 'arraybuffer',
       params: { disk, path },
-    });
+    })
   },
-};
+
+  baseURL() {
+    return request().wrapper.config.baseURL
+  },
+
+  makeURL(url) {
+    return this.baseURL() + url
+  },
+}

@@ -5,8 +5,8 @@ export default {
    * @param state
    */
   cleanTree(state) {
-    state.directories = [];
-    state.counter = 1;
+    state.directories = []
+    state.counter = 1
   },
 
   /**
@@ -18,15 +18,15 @@ export default {
   addDirectories(state, { directories, parentId }) {
     directories.forEach((directory) => {
       // add properties to dir
-      directory.id = state.counter;
-      directory.parentId = parentId;
-      directory.props.subdirectoriesLoaded = false;
-      directory.props.showSubdirectories = false;
+      directory.id = state.counter
+      directory.parentId = parentId
+      directory.props.subdirectoriesLoaded = false
+      directory.props.showSubdirectories = false
 
-      state.counter += 1;
+      state.counter += 1
 
-      state.directories.push(directory);
-    });
+      state.directories.push(directory)
+    })
   },
 
   /**
@@ -35,7 +35,7 @@ export default {
    * @param directories
    */
   replaceDirectories(state, directories) {
-    state.directories = directories;
+    state.directories = directories
   },
 
   /**
@@ -47,7 +47,7 @@ export default {
   updateDirectoryProps(state, { index, props }) {
     for (const property in props) {
       if (Object.prototype.hasOwnProperty.call(props, property)) {
-        state.directories[index].props[property] = props[property];
+        state.directories[index].props[property] = props[property]
       }
     }
   },
@@ -58,7 +58,7 @@ export default {
    * @param index
    */
   addToTempArray(state, index) {
-    state.tempIndexArray.push(index);
+    state.tempIndexArray.push(index)
   },
 
   /**
@@ -66,6 +66,6 @@ export default {
    * @param state
    */
   clearTempArray(state) {
-    state.tempIndexArray = [];
+    state.tempIndexArray = []
   },
-};
+}

@@ -186,6 +186,6 @@ const cs = {
     // acl
     aclError: 'Přístup odepřen!',
   },
-};
+}
 
-export default cs;
+export default cs

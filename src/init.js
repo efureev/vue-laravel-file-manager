@@ -1,5 +1,5 @@
-import store from './store';
-import FileManager from './FileManager.vue';
+import store from './store'
+import FileManager from './FileManager.vue'
 
 /**
  * Install
@@ -8,9 +8,17 @@ import FileManager from './FileManager.vue';
  * @param options
  */
 export default function install(Vue, options = {}) {
-  if (!options.store) console.error('Please provide a store!!');
+  if (!options.store) {
+    console.error('Please provide a store!')
+    return
+  }
 
-  Vue.component('file-manager', FileManager);
+  if (!Vue.prototype.$request) {
+    console.error('Please provide a request!')
+    return
+  }
 
-  options.store.registerModule('fm', store);
+  Vue.component('file-manager', FileManager)
+
+  options.store.registerModule('fm', store)
 }

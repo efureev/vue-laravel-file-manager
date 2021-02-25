@@ -1,4 +1,4 @@
-import mutations from './mutations';
+import mutations from './mutations'
 
 export default {
   namespaced: true,
@@ -12,7 +12,7 @@ export default {
 
       // main modal block height
       modalBlockHeight: 0,
-    };
+    }
   },
   mutations,
-};
+}

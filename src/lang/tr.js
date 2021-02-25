@@ -185,6 +185,6 @@ const tr = {
     // acl
     aclError: 'Erişim engellendi!',
   },
-};
+}
 
-export default tr;
+export default tr

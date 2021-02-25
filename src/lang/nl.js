@@ -188,6 +188,6 @@ const nl = {
     // acl
     aclError: 'Toegang geweigerd!',
   },
-};
+}
 
-export default nl;
+export default nl

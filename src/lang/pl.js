@@ -185,6 +185,6 @@ const pl = {
     // acl
     aclError: 'Brak dostępu!',
   },
-};
+}
 
-export default pl;
+export default pl

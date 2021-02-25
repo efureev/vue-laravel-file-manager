@@ -5,7 +5,7 @@ export default {
      * @returns {*}
      */
     selectedDisk() {
-      return this.$store.getters['fm/selectedDisk'];
+      return this.$store.getters['fm/selectedDisk']
     },
 
     /**
@@ -13,7 +13,7 @@ export default {
      * @returns {*}
      */
     selectedItems() {
-      return this.$store.getters['fm/selectedItems'];
+      return this.$store.getters['fm/selectedItems']
     },
 
     /**
@@ -21,7 +21,7 @@ export default {
      * @returns {*}
      */
     selectedDiskDriver() {
-      return this.$store.state.fm.disks[this.selectedDisk].driver;
+      return this.$store.state.fm.disks[this.selectedDisk].driver
     },
 
     /**
@@ -29,7 +29,7 @@ export default {
      * @returns {boolean}
      */
     multiSelect() {
-      return this.$store.getters['fm/selectedItems'].length > 1;
+      return this.$store.getters['fm/selectedItems'].length > 1
     },
 
     /**
@@ -37,7 +37,7 @@ export default {
      * @returns {*}
      */
     firstItemType() {
-      return this.$store.getters['fm/selectedItems'][0].type;
+      return this.$store.getters['fm/selectedItems'][0].type
     },
   },
   methods: {
@@ -48,9 +48,9 @@ export default {
      */
     canView(extension) {
       // extension not found
-      if (!extension) return false;
+      if (!extension) return false
 
-      return this.$store.state.fm.settings.imageExtensions.includes(extension.toLowerCase());
+      return this.$store.state.fm.settings.imageExtensions.includes(extension.toLowerCase())
     },
 
     /**
@@ -60,10 +60,10 @@ export default {
      */
     canEdit(extension) {
       // extension not found
-      if (!extension) return false;
+      if (!extension) return false
 
       return Object.keys(this.$store.state.fm.settings.textExtensions)
-        .includes(extension.toLowerCase());
+        .includes(extension.toLowerCase())
     },
 
     /**
@@ -73,9 +73,9 @@ export default {
      */
     canAudioPlay(extension) {
       // extension not found
-      if (!extension) return false;
+      if (!extension) return false
 
-      return this.$store.state.fm.settings.audioExtensions.includes(extension.toLowerCase());
+      return this.$store.state.fm.settings.audioExtensions.includes(extension.toLowerCase())
     },
 
     /**
@@ -85,9 +85,9 @@ export default {
      */
     canVideoPlay(extension) {
       // extension not found
-      if (!extension) return false;
+      if (!extension) return false
 
-      return this.$store.state.fm.settings.videoExtensions.includes(extension.toLowerCase());
+      return this.$store.state.fm.settings.videoExtensions.includes(extension.toLowerCase())
     },
 
     /**
@@ -97,9 +97,9 @@ export default {
      */
     isZip(extension) {
       // extension not found
-      if (!extension) return false;
+      if (!extension) return false
 
-      return extension.toLowerCase() === 'zip';
+      return extension.toLowerCase() === 'zip'
     },
   },
-};
+}

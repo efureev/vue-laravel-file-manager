@@ -1,31 +1,30 @@
-import mutations from './mutations';
-import getters from './getters';
-
+import mutations from './mutations'
+import getters from './getters'
 // languages
-import ru from '../../lang/ru';
-import en from '../../lang/en';
-import ar from '../../lang/ar';
-import sr from '../../lang/sr';
-import cs from '../../lang/cs';
-import de from '../../lang/de';
-import es from '../../lang/es';
-import nl from '../../lang/nl';
+import ru from '../../lang/ru'
+import en from '../../lang/en'
+import ar from '../../lang/ar'
+import sr from '../../lang/sr'
+import cs from '../../lang/cs'
+import de from '../../lang/de'
+import es from '../../lang/es'
+import nl from '../../lang/nl'
 /* eslint camelcase: 0 */
-import zh_CN from '../../lang/zh_CN';
-import fa from '../../lang/fa';
-import it from '../../lang/it';
-import tr from '../../lang/tr';
-import fr from '../../lang/fr';
-import pt_BR from '../../lang/pt_BR';
-import zh_TW from '../../lang/zh_TW';
-import pl from '../../lang/pl';
+import zh_CN from '../../lang/zh_CN'
+import fa from '../../lang/fa'
+import it from '../../lang/it'
+import tr from '../../lang/tr'
+import fr from '../../lang/fr'
+import pt_BR from '../../lang/pt_BR'
+import zh_TW from '../../lang/zh_TW'
+import pl from '../../lang/pl'
 
 export default {
   namespaced: true,
   state() {
     return {
       // ACL
-      acl: null,
+      // acl: null,
 
       // App version
       version: '2.5.3',
@@ -34,7 +33,7 @@ export default {
       headers: {},
 
       // axios default URL
-      baseUrl: null,
+      // baseURL: null,
 
       /**
        * File manager windows configuration
@@ -191,8 +190,8 @@ export default {
         yaml: 'text/x-yaml',
         json: 'application/json',
       },
-    };
+    }
   },
   mutations,
   getters,
-};
+}

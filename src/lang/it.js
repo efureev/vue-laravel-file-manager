@@ -182,10 +182,10 @@ const it = {
     renamed: 'Rinominato!',
     copied: 'Copiato con successo!',
     // zip
-    zipError: "Errore dirante la creazione dell'archivio!",
+    zipError: 'Errore dirante la creazione dell\'archivio!',
     // acl
     aclError: 'Accesso negato!',
   },
-};
+}
 
-export default it;
+export default it

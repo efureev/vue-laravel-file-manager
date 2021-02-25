@@ -187,6 +187,6 @@ const es = {
     // acl
     aclError: 'Acceso denegado!',
   },
-};
+}
 
-export default es;
+export default es

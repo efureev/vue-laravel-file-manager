@@ -185,6 +185,6 @@ const en = {
     // acl
     aclError: 'Access denied!',
   },
-};
+}
 
-export default en;
+export default en

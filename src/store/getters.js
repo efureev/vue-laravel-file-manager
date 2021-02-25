@@ -1,3 +1,5 @@
+import select from '@feugene/mu/src/object/select'
+
 export default {
   /**
    * Get a list of disks
@@ -5,7 +7,7 @@ export default {
    * @returns {string[]}
    */
   diskList(state) {
-    return Object.keys(state.disks);
+    return Object.keys(state.disks)
   },
 
   /**
@@ -14,7 +16,7 @@ export default {
    * @returns {selectedDisk|null|*|computed.selectedDisk}
    */
   selectedDisk(state) {
-    return state[state.activeManager].selectedDisk;
+    return state[state.activeManager].selectedDisk
   },
 
   /**
@@ -23,7 +25,7 @@ export default {
    * @returns {selectedDirectory|computed.selectedDirectory|string|*}
    */
   selectedDirectory(state) {
-    return state[state.activeManager].selectedDirectory;
+    return state[state.activeManager].selectedDirectory
   },
 
   /**
@@ -33,7 +35,7 @@ export default {
    * @returns {*}
    */
   selectedItems(state, getters) {
-    return getters[`${state.activeManager}/selectedList`];
+    return getters[`${state.activeManager}/selectedList`]
   },
 
   /**
@@ -42,6 +44,10 @@ export default {
    * @returns {string}
    */
   inactiveManager(state) {
-    return state.activeManager === 'left' ? 'right' : 'left';
+    return state.activeManager === 'left' ? 'right' : 'left'
   },
-};
+
+  translate(state, getters) {
+    return (text) => select(getters['settings/translateMap'], text, text)
+  },
+}

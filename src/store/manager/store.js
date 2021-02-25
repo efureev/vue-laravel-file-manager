@@ -1,6 +1,6 @@
-import mutations from './mutations';
-import getters from './getters';
-import actions from './actions';
+import mutations from './mutations'
+import getters from './getters'
+import actions from './actions'
 
 export default {
   namespaced: true,
@@ -38,9 +38,9 @@ export default {
 
       // view type - table or grid - (default - table)
       viewType: 'table',
-    };
+    }
   },
   mutations,
   getters,
   actions,
-};
+}
