@@ -62,7 +62,8 @@ export default {
    * @returns {*}
    */
   getFile(disk, path) {
-    return request().get('download', { params: { disk, path } })
+    // return request({ responseWrapper: { dataKey: null } }).get('download', { params: { disk, path } })
+    return request({ responseWrapper: { dataKey: null } }).get('download', { params: { disk, path } })
   },
 
   /**

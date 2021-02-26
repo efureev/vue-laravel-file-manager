@@ -9,7 +9,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <codemirror ref="fmCodeEditor" v-model="code" :options="cmOptions"/>
+      <codemirror ref="fmCodeEditor" v-model="content" :options="cmOptions"/>
     </div>
     <div class="modal-footer">
       <button class="btn btn-info"
@@ -50,7 +50,7 @@ export default {
   components: { codemirror },
   data() {
     return {
-      code: '',
+      content: '',
     }
   },
   mounted() {
@@ -58,17 +58,18 @@ export default {
     this.$store.dispatch('fm/getFile', {
       disk: this.selectedDisk,
       path: this.selectedItem.path,
-    }).then((response) => {
-      // add code
-      if (this.selectedItem.extension === 'json') {
-        this.code = JSON.stringify(response.data, null, 4)
-      } else {
-        this.code = response.data
-      }
-
-      // set size
-      this.$refs.fmCodeEditor.codemirror.setSize(null, this.editorHeight)
     })
+      .then((response) => {
+        // add code
+        if (this.selectedItem.extension === 'json') {
+          this.content = JSON.stringify(response.data(), null, 4)
+        } else {
+          this.content = response.data()
+        }
+
+        // set size
+        this.$refs.fmCodeEditor.codemirror.setSize(null, this.editorHeight)
+      })
   },
   computed: {
     /**
@@ -121,7 +122,7 @@ export default {
       // add path
       formData.append('path', this.selectedItem.dirname)
       // add updated file
-      formData.append('file', new Blob([this.code]), this.selectedItem.basename)
+      formData.append('file', new Blob([this.content]), this.selectedItem.basename)
 
       this.$store.dispatch('fm/updateFile', formData).then((response) => {
         // close modal window

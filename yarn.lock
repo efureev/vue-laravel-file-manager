@@ -1046,10 +1046,10 @@
   resolved "https://registry.yarnpkg.com/@feugene/mu/-/mu-2.20.0.tgz#b0f7a5e1deb177163d46a07525759cf256795109"
   integrity sha512-z58/1uhj59K0ZggO39ou+Ng4jQbjaNJ5bCvVsgwVeUCN0lHP/fbGP64BPl5I40mHKQJZg+vdoDQqoaynPYHSSg==
 
-"@feugene/request@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@feugene/request/-/request-0.0.3.tgz#916fb7fdc220584bf12ebb35ede176420f6d68d8"
-  integrity sha512-RuzkIgLkTRr9E9Gz5EhNgVXCkL5u8ru0BQJB8xti4lmlCIycdVS1DaIny7FpERtVAWihx0fr6Hzq7VLG+3L/lA==
+"@feugene/request@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@feugene/request/-/request-0.0.4.tgz#f974725563eee0d5e9fb884726afe849a7a99969"
+  integrity sha512-mgMcEhTCfoY6EV9n+EaSvaZ1N2/+GGDC2KyqViauIritHZAhr5cOeS4QX65spvDGgE0LKgUfYDdHN6vDCCZg2A==
   dependencies:
     "@feugene/mu" "^2.20.0"
     axios "^0.21.1"
