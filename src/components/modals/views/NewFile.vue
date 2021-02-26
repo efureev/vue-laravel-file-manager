@@ -9,21 +9,22 @@
     <div class="modal-body">
       <div class="form-group">
         <label for="fm-file-name">{{ lang.modal.newFile.fieldName }}</label>
-        <input type="text" class="form-control" id="fm-file-name"
-               v-focus
-               v-bind:class="{'is-invalid': fileExist}"
-               v-model="fileName"
-               v-on:keyup="validateFileName">
+        <input
+          type="text"
+          class="form-control"
+          id="fm-file-name"
+          v-focus
+          v-bind:class="{ 'is-invalid': fileExist }"
+          v-model="fileName"
+          v-on:keyup="validateFileName"
+        />
         <div class="invalid-feedback" v-show="fileExist">
           {{ lang.modal.newFile.fieldFeedback }}
         </div>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn btn-info"
-              v-bind:disabled="!submitActive"
-              v-on:click="addFile">{{ lang.btn.submit }}
-      </button>
+      <button class="btn btn-info" v-bind:disabled="!submitActive" v-on:click="addFile">{{ lang.btn.submit }}</button>
       <button class="btn btn-light" v-on:click="hideModal">{{ lang.btn.cancel }}</button>
     </div>
   </div>
@@ -70,12 +71,9 @@ export default {
      * Create new file
      */
     addFile() {
-      this.$store.dispatch('fm/createFile', this.fileName).then((response) => {
-        // if new directory created successfully
-        if (response.data.result.status === 'success') {
-          // close modal window
-          this.hideModal()
-        }
+      this.$store.dispatch('fm/createFile', this.fileName).then(response => {
+        // close modal window
+        this.hideModal()
       })
     },
   },

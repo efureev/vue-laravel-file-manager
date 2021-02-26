@@ -1,6 +1,7 @@
 import buildBaseRequest from '@feugene/request'
 import AuthInterceptor from './interceptors/AuthInterceptor'
 import { LoadingRequestInterceptor, LoadingResponseInterceptor } from '@/request/LoadingInterceptor'
+import ResponseNoticeInterceptor from '@/request/ResponseNoticeInterceptor'
 
 function initBaseUrl() {
   let baseUrl
@@ -48,7 +49,7 @@ function initSettings() {
 // initiate headers, if not set manually
 export const defaultConfig = initSettings()
 
-const request = (store) => (config = {}) => {
+const request = store => (config = {}) => {
   const mergedConfig = { ...defaultConfig, ...config }
 
   mergedConfig.store = store
@@ -56,9 +57,9 @@ const request = (store) => (config = {}) => {
     mergedConfig.auth = 'secret_token'
   }
 
-  mergedConfig.afterInitFn = (instance) => {
+  mergedConfig.afterInitFn = instance => {
     instance.registerRequestInterceptors(LoadingRequestInterceptor)
-    instance.registerResponseInterceptors(LoadingResponseInterceptor)
+    instance.registerResponseInterceptors(LoadingResponseInterceptor, ResponseNoticeInterceptor)
 
     if (instance.config.auth) {
       instance.registerRequestInterceptors(AuthInterceptor)

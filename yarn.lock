@@ -1041,10 +1041,15 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@feugene/mu@^2.20", "@feugene/mu@^2.20.0":
+"@feugene/mu@^2.20.0":
   version "2.20.0"
   resolved "https://registry.yarnpkg.com/@feugene/mu/-/mu-2.20.0.tgz#b0f7a5e1deb177163d46a07525759cf256795109"
   integrity sha512-z58/1uhj59K0ZggO39ou+Ng4jQbjaNJ5bCvVsgwVeUCN0lHP/fbGP64BPl5I40mHKQJZg+vdoDQqoaynPYHSSg==
+
+"@feugene/mu@^2.20.1":
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/@feugene/mu/-/mu-2.20.1.tgz#20a0ed1b6b776ed637bcaa3df8f8480af43ccf06"
+  integrity sha512-1vAsmC7thOg+vMs/eqOGNZpwAMbLve6ockctLfi+53nJTRggbZuks3nNUyyAMuYlpSxC/ZezLjzL2yYQwe1Tng==
 
 "@feugene/request@^0.0.4":
   version "0.0.4"

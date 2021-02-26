@@ -9,12 +9,10 @@
       </button>
     </div>
     <div class="modal-body">
-      <codemirror ref="fmCodeEditor" v-model="content" :options="cmOptions"/>
+      <codemirror ref="fmCodeEditor" v-model="content" :options="cmOptions" />
     </div>
     <div class="modal-footer">
-      <button class="btn btn-info"
-              v-on:click="updateFile">{{ lang.btn.submit }}
-      </button>
+      <button class="btn btn-info" v-on:click="updateFile">{{ lang.btn.submit }}</button>
       <button class="btn btn-light" v-on:click="hideModal">{{ lang.btn.cancel }}</button>
     </div>
   </div>
@@ -55,12 +53,12 @@ export default {
   },
   mounted() {
     // get file for edit
-    this.$store.dispatch('fm/getFile', {
-      disk: this.selectedDisk,
-      path: this.selectedItem.path,
-    })
-      .then((response) => {
-        // add code
+    this.$store
+      .dispatch('fm/getFile', {
+        disk: this.selectedDisk,
+        path: this.selectedItem.path,
+      })
+      .then(response => {
         if (this.selectedItem.extension === 'json') {
           this.content = JSON.stringify(response.data(), null, 4)
         } else {
@@ -124,7 +122,7 @@ export default {
       // add updated file
       formData.append('file', new Blob([this.content]), this.selectedItem.basename)
 
-      this.$store.dispatch('fm/updateFile', formData).then((response) => {
+      this.$store.dispatch('fm/updateFile', formData).then(response => {
         // close modal window
         this.hideModal()
       })
