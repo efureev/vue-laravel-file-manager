@@ -3,29 +3,24 @@
     <div class="row justify-content-between">
       <div class="col-auto">
         <el-button-group>
-          <el-button
-            icon="el-icon-back"
-            v-bind:disabled="backDisabled"
-            v-bind:title="lang.btn.back"
-            v-on:click="historyBack()"
-          />
+          <el-button icon="el-icon-back" :disabled="backDisabled" :title="lang.btn.back" @click="historyBack()" />
           <el-button
             icon="el-icon-right"
-            v-bind:disabled="forwardDisabled"
-            v-bind:title="lang.btn.forward"
-            v-on:click="historyForward()"
+            :disabled="forwardDisabled"
+            :title="lang.btn.forward"
+            @click="historyForward()"
           />
-          <el-button icon="el-icon-refresh" v-on:click="refreshAll()" v-bind:title="lang.btn.refresh" />
+          <el-button icon="el-icon-refresh" @click="refreshAll()" :title="lang.btn.refresh" />
         </el-button-group>
 
         <el-button-group>
-          <el-button icon="el-icon-document-add" v-on:click="showModal('NewFile')" v-bind:title="lang.btn.file" />
-          <el-button icon="el-icon-folder-add" v-on:click="showModal('NewFolder')" v-bind:title="lang.btn.folder" />
+          <el-button icon="el-icon-document-add" @click="showModal('NewFile')" :title="lang.btn.file" />
+          <el-button icon="el-icon-folder-add" @click="showModal('NewFolder')" :title="lang.btn.folder" />
           <el-button
             icon="el-icon-upload"
-            v-bind:title="lang.btn.upload"
+            :title="lang.btn.upload"
             :disabled="uploading"
-            v-on:click="uploading ? showModal('Upload') : null"
+            @click="!uploading ? showModal('Upload') : null"
           />
           <el-button
             icon="el-icon-delete"
