@@ -62,8 +62,7 @@ export default {
       // extension not found
       if (!extension) return false
 
-      return Object.keys(this.$store.state.fm.settings.textExtensions)
-        .includes(extension.toLowerCase())
+      return Object.keys(this.$store.state.fm.settings.textExtensions).includes(extension.toLowerCase())
     },
 
     /**

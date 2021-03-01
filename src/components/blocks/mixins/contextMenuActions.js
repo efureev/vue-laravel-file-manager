@@ -67,14 +67,16 @@ export default {
      */
     selectAction() {
       // file callback
-      this.$store.dispatch('fm/url', {
-        disk: this.selectedDisk,
-        path: this.selectedItems[0].path,
-      }).then((response) => {
-        if (response.data.result.status === 'success') {
-          this.$store.state.fm.fileCallback(response.data.url)
-        }
-      })
+      this.$store
+        .dispatch('fm/url', {
+          disk: this.selectedDisk,
+          path: this.selectedItems[0].path,
+        })
+        .then(response => {
+          if (response.data.result.status === 'success') {
+            this.$store.state.fm.fileCallback(response.data.url)
+          }
+        })
     },
 
     /**
@@ -87,14 +89,16 @@ export default {
 
       // download file with authorization
       if (this.$store.getters['fm/settings/authHeader']) {
-        HTTP.download(this.selectedDisk, this.selectedItems[0].path).then((response) => {
+        HTTP.download(this.selectedDisk, this.selectedItems[0].path).then(response => {
           tempLink.href = window.URL.createObjectURL(new Blob([response.data]))
           document.body.appendChild(tempLink)
           tempLink.click()
           document.body.removeChild(tempLink)
         })
       } else {
-        tempLink.href = GET.makeURL(`/download?disk=${this.selectedDisk}&path=${encodeURIComponent(this.selectedItems[0].path)}`)
+        tempLink.href = GET.makeURL(
+          `/download?disk=${this.selectedDisk}&path=${encodeURIComponent(this.selectedItems[0].path)}`
+        )
         document.body.appendChild(tempLink)
         tempLink.click()
         document.body.removeChild(tempLink)

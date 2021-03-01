@@ -1,10 +1,13 @@
 <template>
   <div class="fm-notification">
     <transition-group name="notify">
-      <div class="fm-notification-item" role="alert"
-           v-for="(notification, index) in notifications"
-           v-bind:class="`fm-${notification.status}`"
-           v-bind:key="`notify-${index}`">
+      <div
+        class="fm-notification-item"
+        role="alert"
+        v-for="(notification, index) in notifications"
+        v-bind:class="`fm-${notification.status}`"
+        v-bind:key="`notify-${index}`"
+      >
         {{ notification.message }}
       </div>
     </transition-group>
@@ -35,7 +38,8 @@ export default {
      */
     addNotification(status, message) {
       this.notifications.push({
-        status, message,
+        status,
+        message,
       })
       // timeout for closing
       setTimeout(() => {
@@ -54,25 +58,26 @@ export default {
   z-index: 9999;
   width: 350px;
   display: block;
-  transition: opacity .4s ease;
+  transition: opacity 0.4s ease;
   overflow: auto;
 
   .fm-notification-item {
-    padding: .75rem 1.25rem;
+    padding: 0.75rem 1.25rem;
     margin-bottom: 1rem;
     border: 1px solid;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
   }
 
   .notify-enter-active {
-    transition: all .3s ease;
+    transition: all 0.3s ease;
   }
 
   .notify-leave-active {
-    transition: all .8s ease;
+    transition: all 0.8s ease;
   }
 
-  .notify-enter, .notify-leave-to {
+  .notify-enter,
+  .notify-leave-to {
     opacity: 0;
   }
 }

@@ -1,42 +1,49 @@
 <template>
   <div class="justify-content-between fm-info-block">
     <div class="col-auto">
-            <span v-show="selectedCount">
-                {{ `${lang.info.selected} ${selectedCount}` }}
-                {{ `${lang.info.selectedSize} ${selectedFilesSize}` }}
-            </span>
+      <span v-show="selectedCount">
+        {{ `${lang.info.selected} ${selectedCount}` }}
+        {{ `${lang.info.selectedSize} ${selectedFilesSize}` }}
+      </span>
       <span v-show="!selectedCount">
-                {{ `${lang.info.directories} ${directoriesCount}` }}
-                {{ `${lang.info.files} ${filesCount}` }}
-                {{ `${lang.info.size} ${filesSize}`}}
-            </span>
+        {{ `${lang.info.directories} ${directoriesCount}` }}
+        {{ `${lang.info.files} ${filesCount}` }}
+        {{ `${lang.info.size} ${filesSize}` }}
+      </span>
     </div>
     <div class="col-4">
       <!-- Progress Bar -->
       <div class="progress" v-show="progressBar">
-        <div class="progress-bar progress-bar-striped bg-info" role="progressbar"
-             v-bind:aria-valuenow="progressBar"
-             aria-valuemin="0"
-             aria-valuemax="100"
-             v-bind:style="{width: progressBar + '%' }">
+        <div
+          class="progress-bar progress-bar-striped bg-info"
+          role="progressbar"
+          v-bind:aria-valuenow="progressBar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          v-bind:style="{ width: progressBar + '%' }"
+        >
           {{ progressBar }}%
         </div>
       </div>
     </div>
     <div class="col-auto text-right">
-            <span v-show="loadingSpinner">
-                <i class="fas fa-spinner fa-pulse"/>
-            </span>
-      <span v-show="clipboardType"
-            v-on:click="showModal('Clipboard')"
-            v-bind:title="[ lang.clipboard.title + ' - ' + lang.clipboard[clipboardType] ]">
-                <i class="far fa-clipboard"/>
-            </span>
-      <span v-on:click="showModal('Status')"
-            v-bind:class="[hasErrors ? 'text-danger' : 'text-success']"
-            v-bind:title="lang.modal.status.title">
-                <i class="fas fa-info-circle"/>
-            </span>
+      <span v-show="loadingSpinner">
+        <i class="fas fa-spinner fa-pulse" />
+      </span>
+      <span
+        v-show="clipboardType"
+        v-on:click="showModal('Clipboard')"
+        v-bind:title="[lang.clipboard.title + ' - ' + lang.clipboard[clipboardType]]"
+      >
+        <i class="far fa-clipboard" />
+      </span>
+      <span
+        v-on:click="showModal('Status')"
+        v-bind:class="[hasErrors ? 'text-danger' : 'text-success']"
+        v-bind:title="lang.modal.status.title"
+      >
+        <i class="fas fa-info-circle" />
+      </span>
     </div>
   </div>
 </template>

@@ -1,18 +1,20 @@
 <template>
-  <div ref="contextMenu"
-       v-if="menuVisible"
-       v-bind:style="menuStyle"
-       v-on:blur="closeMenu"
-       class="fm-context-menu"
-       tabindex="-1">
-    <ul v-for="(group, index) in menu"
-        v-bind:key="`g-${index}`"
-        class="list-unstyled">
-      <li v-for="(item, index) in group"
-          v-bind:key="`i-${index}`"
-          v-if="showMenuItem(item.name)"
-          v-on:click="menuAction(item.name)">
-        <i class="fa-fw" v-bind:class="item.icon"/>
+  <div
+    ref="contextMenu"
+    v-if="menuVisible"
+    v-bind:style="menuStyle"
+    v-on:blur="closeMenu"
+    class="fm-context-menu"
+    tabindex="-1"
+  >
+    <ul v-for="(group, index) in menu" v-bind:key="`g-${index}`" class="list-unstyled">
+      <li
+        v-for="(item, index) in group"
+        v-bind:key="`i-${index}`"
+        v-if="showMenuItem(item.name)"
+        v-on:click="menuAction(item.name)"
+      >
+        <i class="fa-fw" v-bind:class="item.icon" />
         {{ lang.contextMenu[item.name] }}
       </li>
     </ul>
@@ -44,7 +46,7 @@ export default {
      * Listen events
      * 'contextMenu'
      */
-    EventBus.$on('contextMenu', (event) => this.showMenu(event))
+    EventBus.$on('contextMenu', event => this.showMenu(event))
   },
   computed: {
     /**
@@ -154,7 +156,7 @@ export default {
 
   .list-unstyled {
     margin-bottom: 0;
-    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
   }
 
   ul > li {

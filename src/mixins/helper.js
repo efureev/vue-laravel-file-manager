@@ -1,3 +1,5 @@
+import { fileSize } from '@feugene/mu/src/format'
+
 export default {
   methods: {
     /**
@@ -6,15 +8,16 @@ export default {
      * @returns {string}
      */
     bytesToHuman(bytes) {
-      const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
+      return fileSize(bytes)
+      /*const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']
 
-      if (bytes === 0) return '0 Bytes'
+       if (bytes === 0) return '0 Bytes'
 
-      const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
+       const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10)
 
-      if (i === 0) return `${bytes} ${sizes[i]}`
+       if (i === 0) return `${bytes} ${sizes[i]}`
 
-      return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`
+       return `${(bytes / (1024 ** i)).toFixed(1)} ${sizes[i]}`*/
     },
 
     /**
@@ -39,7 +42,6 @@ export default {
     mimeToIcon(mime) {
       // mime types
       const mimeTypes = {
-
         // image
         'image/gif': 'fa-file-image',
         'image/png': 'fa-file-image',
@@ -123,7 +125,6 @@ export default {
     extensionToIcon(extension) {
       // files extensions
       const extensionTypes = {
-
         // images
         gif: 'fa-file-image',
         png: 'fa-file-image',

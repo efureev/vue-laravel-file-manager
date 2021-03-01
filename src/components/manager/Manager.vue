@@ -1,10 +1,10 @@
 <template>
   <div class="fm-content d-flex flex-column">
-    <disk-list v-bind:manager="manager"/>
-    <breadcrumb v-bind:manager="manager"/>
+    <disk-list :manager="manager" />
+    <breadcrumb :manager="manager" />
     <div class="fm-content-body">
-      <table-view v-if="viewType === 'table'" v-bind:manager="manager"/>
-      <grid-view v-else v-bind:manager="manager"/>
+      <table-view v-if="isViewTable" v-bind:manager="manager" />
+      <grid-view v-else-if="isViewGrid" v-bind:manager="manager" />
     </div>
   </div>
 </template>
@@ -25,15 +25,21 @@ export default {
     GridView,
   },
   props: {
-    manager: { type: String, required: true },
+    manager: {
+      type: String,
+      required: true,
+    },
   },
   computed: {
     /**
      * view type - grid or table
      * @returns {default.computed.viewType|(function())|string}
      */
-    viewType() {
-      return this.$store.state.fm[this.manager].viewType
+    isViewTable() {
+      return this.$store.getters[`fm/${this.manager}/isViewTable`]
+    },
+    isViewGrid() {
+      return this.$store.getters[`fm/${this.manager}/isViewGrid`]
     },
   },
 }
