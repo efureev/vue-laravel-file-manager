@@ -24,39 +24,34 @@
           />
           <el-button
             icon="el-icon-delete"
-            v-bind:disabled="!isAnyItemSelected"
-            v-on:click="showModal('Delete')"
-            v-bind:title="lang.btn.delete"
+            :disabled="!isAnyItemSelected"
+            :title="lang.btn.delete"
+            @click="showModal('Delete')"
           />
         </el-button-group>
 
         <el-button-group>
           <el-button
             icon="el-icon-document-copy"
-            v-bind:disabled="!isAnyItemSelected"
-            v-bind:title="lang.btn.copy"
-            v-on:click="toClipboard('copy')"
+            :disabled="!isAnyItemSelected"
+            :title="lang.btn.copy"
+            @click="toClipboard('copy')"
           />
           <el-button
             icon="el-icon-scissors"
-            v-bind:disabled="!isAnyItemSelected"
-            v-bind:title="lang.btn.cut"
-            v-on:click="toClipboard('cut')"
+            :disabled="!isAnyItemSelected"
+            :title="lang.btn.cut"
+            @click="toClipboard('cut')"
           />
-          <el-button
-            icon="el-icon-files"
-            v-bind:disabled="!clipboardType"
-            v-bind:title="lang.btn.paste"
-            v-on:click="paste"
-          />
+          <el-button icon="el-icon-files" :disabled="!clipboardType" :title="lang.btn.paste" @click="paste" />
         </el-button-group>
 
         <el-button-group>
           <el-button
             :type="hiddenFiles ? 'default' : 'info'"
             icon="el-icon-view"
-            v-bind:title="lang.btn.hidden"
-            v-on:click="toggleHidden"
+            :title="lang.btn.hidden"
+            @click="toggleHidden"
           />
         </el-button-group>
 
@@ -70,8 +65,8 @@
         <el-button-group>
           <el-button
             :type="viewType === 'table' ? 'default' : 'info'"
-            v-on:click="selectView('table')"
-            v-bind:title="lang.btn.table"
+            :title="lang.btn.table"
+            @click="selectView('table')"
           >
             <i class="fas" v-bind:class="[viewType === 'table' ? 'fa-th-list' : 'fa-th']" />
           </el-button>
@@ -79,8 +74,8 @@
           <el-button
             icon="el-icon-full-screen"
             :type="fullScreen ? 'default' : 'primary'"
-            v-bind:title="lang.btn.fullScreen"
-            v-on:click="screenToggle"
+            :title="lang.btn.fullScreen"
+            @click="screenToggle"
           />
         </el-button-group>
 
