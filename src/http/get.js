@@ -6,6 +6,8 @@ export default {
    * @returns {*}
    */
   initialize() {
+    console.log(request().interceptors)
+
     return request().get('initialize')
   },
 

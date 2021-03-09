@@ -1041,22 +1041,17 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@feugene/mu@^2.20.0":
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/@feugene/mu/-/mu-2.20.0.tgz#b0f7a5e1deb177163d46a07525759cf256795109"
-  integrity sha512-z58/1uhj59K0ZggO39ou+Ng4jQbjaNJ5bCvVsgwVeUCN0lHP/fbGP64BPl5I40mHKQJZg+vdoDQqoaynPYHSSg==
-
 "@feugene/mu@^2.20.1":
   version "2.20.1"
   resolved "https://registry.yarnpkg.com/@feugene/mu/-/mu-2.20.1.tgz#20a0ed1b6b776ed637bcaa3df8f8480af43ccf06"
   integrity sha512-1vAsmC7thOg+vMs/eqOGNZpwAMbLve6ockctLfi+53nJTRggbZuks3nNUyyAMuYlpSxC/ZezLjzL2yYQwe1Tng==
 
-"@feugene/request@^0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@feugene/request/-/request-0.0.4.tgz#f974725563eee0d5e9fb884726afe849a7a99969"
-  integrity sha512-mgMcEhTCfoY6EV9n+EaSvaZ1N2/+GGDC2KyqViauIritHZAhr5cOeS4QX65spvDGgE0LKgUfYDdHN6vDCCZg2A==
+"@feugene/request@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@feugene/request/-/request-0.1.1.tgz#80e45195d6dab002e45ddbc8480c7e6502c6ce8d"
+  integrity sha512-QEiNuVE8GyiG8Ltb6aNv8pPwd5Krrx6diPd/VUZSz+ssfeopTmhtyIrC5oWO0EssyHEHXCy5PYqvjCWwnJmP8A==
   dependencies:
-    "@feugene/mu" "^2.20.0"
+    "@feugene/mu" "^2.20.1"
     axios "^0.21.1"
 
 "@hapi/address@2.x.x":

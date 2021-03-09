@@ -2,6 +2,7 @@ import EventBus from '@/eventBus'
 
 export const LoadingRequestInterceptor = options => [
   config => {
+    console.log('LoadingRequestInterceptor')
     options.store.commit('fm/messages/addLoading')
     return config
   },
