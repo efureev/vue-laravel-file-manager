@@ -13,6 +13,7 @@ const store = new Vuex.Store({
 })
 
 Vue.config.productionTip = process.env.NODE_ENV === 'production'
+
 Vue.prototype.$request = request(store)
 
 Vue.use(FileManager, { store })

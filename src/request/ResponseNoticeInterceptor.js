@@ -1,4 +1,4 @@
-import EventBus from '@/eventBus'
+import EventBus from '../eventBus'
 
 const ResponseNoticeInterceptor = options => [
   null,

@@ -9,7 +9,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <video ref="fmVideo" controls/>
+      <video ref="fmVideo" controls />
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@
 import Plyr from 'plyr'
 import modal from '../mixins/modal'
 import translate from '../../../mixins/translate'
-import GET from '@/http/get'
+import GET from '../../../http/get'
 
 export default {
   name: 'Player',
@@ -35,10 +35,12 @@ export default {
     this.player.source = {
       type: 'video',
       title: this.videoFile.filename,
-      sources: [{
-        src: GET.makeURL(`/stream-file?disk=${this.selectedDisk}&path=${encodeURIComponent(this.videoFile.path)}`),
-        type: `audio/${this.videoFile.extension}`,
-      }],
+      sources: [
+        {
+          src: GET.makeURL(`/stream-file?disk=${this.selectedDisk}&path=${encodeURIComponent(this.videoFile.path)}`),
+          type: `audio/${this.videoFile.extension}`,
+        },
+      ],
     }
   },
   beforeDestroy() {
@@ -67,6 +69,5 @@ export default {
 
 <style lang="scss">
 .fm-modal-video-player {
-
 }
 </style>

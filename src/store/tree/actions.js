@@ -1,4 +1,4 @@
-import GET from '@/http/get'
+import GET from '../../http/get'
 
 export default {
   /**
@@ -10,19 +10,18 @@ export default {
    * @changed
    */
   initTree({ state, commit }, disk) {
-    GET.tree(disk)
-      .then((response) => {
-        // clean the tree, if need
-        if (state.directories) {
-          commit('cleanTree')
-        }
+    GET.tree(disk).then(response => {
+      // clean the tree, if need
+      if (state.directories) {
+        commit('cleanTree')
+      }
 
-        // initialize directories tree
-        commit('addDirectories', {
-          parentId: 0,
-          directories: response.data(),
-        })
+      // initialize directories tree
+      commit('addDirectories', {
+        parentId: 0,
+        directories: response.data(),
       })
+    })
   },
 
   /**
@@ -77,7 +76,7 @@ export default {
    * @param directories
    */
   deleteFromTree({ state, commit, getters, dispatch }, directories) {
-    directories.forEach((item) => {
+    directories.forEach(item => {
       // find this directory in the tree
       const directoryIndex = getters.findDirectoryIndex(item.path)
 
@@ -143,22 +142,21 @@ export default {
    * @changed
    */
   getSubdirectories({ commit, rootGetters }, { path, parentId, parentIndex }) {
-    return GET.tree(rootGetters['fm/selectedDisk'], path)
-      .then((response) => {
-        // add directories
-        commit('addDirectories', {
-          parentId,
-          directories: response.data(),
-        })
-
-        // update properties at parent directory
-        commit('updateDirectoryProps', {
-          index: parentIndex,
-          props: {
-            subdirectoriesLoaded: true,
-          },
-        })
+    return GET.tree(rootGetters['fm/selectedDisk'], path).then(response => {
+      // add directories
+      commit('addDirectories', {
+        parentId,
+        directories: response.data(),
       })
+
+      // update properties at parent directory
+      commit('updateDirectoryProps', {
+        index: parentIndex,
+        props: {
+          subdirectoriesLoaded: true,
+        },
+      })
+    })
   },
 
   /**
@@ -192,16 +190,15 @@ export default {
           path: state.directories[parentDirectoryIndex].path,
           parentId: state.directories[parentDirectoryIndex].id,
           parentIndex: parentDirectoryIndex,
-        })
-          .then(() => {
-            // update properties in the parent directory
-            commit('updateDirectoryProps', {
-              index: parentDirectoryIndex,
-              props: {
-                showSubdirectories: true,
-              },
-            })
+        }).then(() => {
+          // update properties in the parent directory
+          commit('updateDirectoryProps', {
+            index: parentDirectoryIndex,
+            props: {
+              showSubdirectories: true,
+            },
           })
+        })
       }
     } else {
       commit('fm/messages/setError', { message: 'Directory not found' }, { root: true })
@@ -247,10 +244,7 @@ export default {
       const splitPath = path.split('/')
 
       for (let i = 0; splitPath.length > i; i += 1) {
-        promises = promises.then(() => dispatch(
-          'showSubdirectories',
-          splitPath.slice(0, i + 1).join('/'),
-        ))
+        promises = promises.then(() => dispatch('showSubdirectories', splitPath.slice(0, i + 1).join('/')))
       }
 
       return promises

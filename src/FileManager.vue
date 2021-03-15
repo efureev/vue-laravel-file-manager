@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import '@/plugins'
+import './plugins'
 /* eslint-disable import/no-duplicates, no-param-reassign */
 import { mapState } from 'vuex'
 // import {request} from './utils/request'

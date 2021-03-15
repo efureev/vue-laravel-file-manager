@@ -1,6 +1,6 @@
 import Vue from 'vue'
-import { LoadingRequestInterceptor, LoadingResponseInterceptor } from '@/request/LoadingInterceptor'
-import ResponseNoticeInterceptor from '@/request/ResponseNoticeInterceptor'
+import { LoadingRequestInterceptor, LoadingResponseInterceptor } from '../request/LoadingInterceptor'
+import ResponseNoticeInterceptor from '../request/ResponseNoticeInterceptor'
 
 const fmApiPath = process.env.VUE_APP_LFM_PATH || 'file-manager'
 

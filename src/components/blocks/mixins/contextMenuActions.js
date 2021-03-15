@@ -1,5 +1,5 @@
 import HTTP from '../../../http/get'
-import GET from '@/http/get'
+import GET from '../../../http/get'
 
 /**
  * Context menu actions

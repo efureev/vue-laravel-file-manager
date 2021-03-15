@@ -13,7 +13,7 @@
   "main": "src/init.js",
   "scripts": {
     "serve": "vue-cli-service serve ./demo/main.js",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build ./src/init.js",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit"
   },
@@ -35,7 +35,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.13.0",
     "@babel/plugin-transform-runtime": "^7.13.5",
-    "@feugene/mu": "^2.20.1",
+    "@feugene/mu": "^2.20.4",
     "@feugene/request": "^0.1.2",
     "@vue/cli-plugin-babel": "~4.5.11",
     "@vue/cli-plugin-eslint": "~4.5.11",
@@ -59,6 +59,12 @@
     "sass-loader": "^10.1.1",
     "vue": "^2.6.12",
     "vue-template-compiler": "^2.6.12",
-    "vuex": "^3.6.2"
+    "vuex": "^3.6.2",
+
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@rollup/plugin-node-resolve": "^11.2.0",
+    "@rollup/plugin-replace": "^2.4.1",
+    "rollup": "^2.41.0",
+    "rollup-plugin-vue": "^6.0.0"
   }
 }

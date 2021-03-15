@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import request from '@/request'
 
 export default {
   /**
@@ -8,10 +7,9 @@ export default {
    * @param {{}} data
    */
   customSettings(state, data) {
-
-  /*  if (data.baseURL) {
-      state.baseURL = data.baseURL
-    }*/
+    /*  if (data.baseURL) {
+     state.baseURL = data.baseURL
+     }*/
 
     // overwrite request headers
     if (data.headers) {
@@ -35,16 +33,16 @@ export default {
    * @param state
    */
   /*initAxiosSettings(state) {
-    const config = request().wrapper.config
+   const config = request().wrapper.config
 
-    if (!state.baseURL) {
-      state.baseURL = config.baseURL
-    }
+   if (!state.baseURL) {
+   state.baseURL = config.baseURL
+   }
 
-    if (!state.headers) {
-      state.headers = config.headers
-    }
-  },*/
+   if (!state.headers) {
+   state.headers = config.headers
+   }
+   },*/
 
   /**
    * Initialize App settings from server

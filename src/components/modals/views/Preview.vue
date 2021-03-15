@@ -11,28 +11,27 @@
     </div>
     <div class="modal-body text-center">
       <template v-if="showCropperModule">
-        <cropper-module v-bind:imgSrc="imgSrc"
-                        v-bind:maxHeight="maxHeight"
-                        v-on:closeCropper="closeCropper"/>
+        <cropper-module v-bind:imgSrc="imgSrc" v-bind:maxHeight="maxHeight" v-on:closeCropper="closeCropper" />
       </template>
       <transition v-else name="fade" mode="out-in">
-        <i v-if="!imgSrc" class="fas fa-spinner fa-spin fa-5x p-5 text-muted"/>
-        <img v-else
-             v-bind:src="imgSrc"
-             v-bind:alt="selectedItem.basename"
-             v-bind:style="{'max-height': maxHeight+'px'}">
+        <i v-if="!imgSrc" class="fas fa-spinner fa-spin fa-5x p-5 text-muted" />
+        <img
+          v-else
+          v-bind:src="imgSrc"
+          v-bind:alt="selectedItem.basename"
+          v-bind:style="{ 'max-height': maxHeight + 'px' }"
+        />
       </transition>
     </div>
     <div v-if="showFooter" class="d-flex justify-content-between">
-            <span class="d-block">
-                <button class="btn btn-info"
-                        v-bind:title="lang.modal.cropper.title" v-on:click="showCropperModule = true">
-                    <i class="fas fa-crop-alt"/>
-                </button>
-            </span>
       <span class="d-block">
-                <button class="btn btn-light" v-on:click="hideModal">{{ lang.btn.cancel }}</button>
-            </span>
+        <button class="btn btn-info" v-bind:title="lang.modal.cropper.title" v-on:click="showCropperModule = true">
+          <i class="fas fa-crop-alt" />
+        </button>
+      </span>
+      <span class="d-block">
+        <button class="btn btn-light" v-on:click="hideModal">{{ lang.btn.cancel }}</button>
+      </span>
     </div>
   </div>
 </template>
@@ -42,7 +41,7 @@ import CropperModule from '../additions/Cropper.vue'
 import modal from '../mixins/modal'
 import translate from '../../../mixins/translate'
 import helper from '../../../mixins/helper'
-import GET from '@/http/get'
+import GET from '../../../http/get'
 
 export default {
   name: 'Preview',
@@ -126,18 +125,18 @@ export default {
     loadImage() {
       // if authorization required
       if (this.auth) {
-        GET.preview(
-          this.selectedDisk,
-          this.selectedItem.path,
-        )
-          .then((response) => {
-            const mimeType = response.headers['content-type'].toLowerCase()
-            const imgBase64 = Buffer.from(response.data, 'binary').toString('base64')
+        GET.preview(this.selectedDisk, this.selectedItem.path).then(response => {
+          const mimeType = response.headers['content-type'].toLowerCase()
+          const imgBase64 = Buffer.from(response.data, 'binary').toString('base64')
 
-            this.imgSrc = `data:${mimeType};base64,${imgBase64}`
-          })
+          this.imgSrc = `data:${mimeType};base64,${imgBase64}`
+        })
       } else {
-        this.imgSrc = GET.makeURL(`/preview?disk=${this.selectedDisk}&path=${encodeURIComponent(this.selectedItem.path)}&v=${this.selectedItem.timestamp}`)
+        this.imgSrc = GET.makeURL(
+          `/preview?disk=${this.selectedDisk}&path=${encodeURIComponent(this.selectedItem.path)}&v=${
+            this.selectedItem.timestamp
+          }`
+        )
       }
     },
   },
@@ -146,7 +145,6 @@ export default {
 
 <style lang="scss">
 .fm-modal-preview {
-
   .modal-body {
     padding: 0;
 

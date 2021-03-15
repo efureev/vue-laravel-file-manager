@@ -1,5 +1,5 @@
 /* eslint-disable object-curly-newline */
-import GET from '@/http/get'
+import GET from '../../http/get'
 
 export default {
   /**
@@ -17,26 +17,21 @@ export default {
     commit('clearDirectoryContent')
 
     // get content for the selected directory
-    return GET.content(state.selectedDisk, path)
-      .then((response) => {
-        commit('resetSelected')
-        commit('resetSortSettings')
-        commit('setDirectoryContent', response.data())
-        commit('setSelectedDirectory', path)
+    return GET.content(state.selectedDisk, path).then(response => {
+      commit('resetSelected')
+      commit('resetSortSettings')
+      commit('setDirectoryContent', response.data())
+      commit('setSelectedDirectory', path)
 
-        if (history) {
-          commit('addToHistory', path)
-        }
+      if (history) {
+        commit('addToHistory', path)
+      }
 
-        // if directories tree is shown, not main directory and directory have subdirectories
-        if (
-          rootState.fm.settings.windowsConfig === 2
-          && path
-          && response.data().directories.length
-        ) {
-          dispatch('fm/tree/showSubdirectories', path, { root: true })
-        }
-      })
+      // if directories tree is shown, not main directory and directory have subdirectories
+      if (rootState.fm.settings.windowsConfig === 2 && path && response.data().directories.length) {
+        dispatch('fm/tree/showSubdirectories', path, { root: true })
+      }
+    })
   },
 
   /**
@@ -48,7 +43,7 @@ export default {
    */
   refreshDirectory({ state, commit, dispatch }) {
     GET.content(state.selectedDisk, state.selectedDirectory)
-      .then((response) => {
+      .then(response => {
         commit('resetSelected')
         commit('resetSortSettings')
         commit('resetHistory')
