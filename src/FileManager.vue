@@ -34,10 +34,10 @@
 </template>
 
 <script>
-import './plugins'
+// import './plugins'
 /* eslint-disable import/no-duplicates, no-param-reassign */
 import { mapState } from 'vuex'
-// import {request} from './utils/request'
+
 import EventBus from './eventBus'
 // Components
 import Navbar from './components/blocks/Navbar.vue'
@@ -107,7 +107,7 @@ export default {
     this.$store.dispatch('fm/resetState')
 
     // delete events
-    EventBus.$off(['contextMenu', 'addNotification'])
+    EventBus().$off(['contextMenu', 'addNotification'])
   },
   computed: {
     ...mapState('fm', {

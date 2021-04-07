@@ -8,7 +8,7 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   runtimeCompiler: true,
   // transpileDependencies: ['element-tiptap', '@wtfcode/vue-merge'],
-  transpileDependencies: ['@feugene/request'],
+  transpileDependencies: ['@feugene/request-interceptors'],
   devServer: {
     open: true,
     proxy: {

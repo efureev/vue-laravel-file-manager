@@ -1,30 +1,44 @@
-import buildBaseRequest from '@feugene/request'
-import { isObject } from '@feugene/mu/src/is'
+import buildRequest from '@feugene/layer-request'
+import WrapperInterceptor from '@feugene/request-interceptors/src/response/WrapperInterceptor'
+import { ActionInterceptorBuild } from '@feugene/request-interceptors/src/response/ActionInterceptor'
 
-const baseHost = process.env.VUE_APP_HOST
-const apiPrefix = process.env.VUE_APP_API_PREFIX
+const apiHost = process.env.VUE_APP_API_PREFIX || '/api'
 
-function initHeaders() {
-  return {
-    'X-Requested-With': 'XMLHttpRequest',
-  }
+export const createRequest = (store, nameLayer) => {
+  const request = buildRequest({ extra: { store } })
+
+  request.manager.addLayer(cm => {
+    return cm.new({
+      requestConfig: {
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+        baseURL: apiHost,
+      },
+      interceptors: {
+        request: [
+          // eslint-disable-next-line unicorn/consistent-function-scoping
+          () => rConfig => {
+            console.info(`\t🌐 ${rConfig.baseURL}${rConfig.url}`)
+            return rConfig
+          },
+        ],
+        response: [
+          // eslint-disable-next-line unicorn/consistent-function-scoping
+          () => response => {
+            console.info(`\t✅ ${response.request.responseURL}`)
+            return response
+          },
+          WrapperInterceptor(),
+          ActionInterceptorBuild({
+            actionAttributeName: 'status',
+          }),
+        ],
+      },
+    })
+  }, nameLayer)
+
+  return request
 }
 
-const request = store => (config = {}) => {
-  const headers = {
-    ...initHeaders(),
-    ...(isObject(config.headers) ? config.headers : {}),
-  }
-
-  const mergedConfig = {
-    baseURL: `${baseHost}${apiPrefix}`,
-    ...config,
-    headers,
-  }
-
-  mergedConfig.store = store
-
-  return buildBaseRequest(mergedConfig)
-}
-
-export default request
+export default createRequest

@@ -1,5 +1,8 @@
 import store from './store'
 import FileManager from './FileManager.vue'
+import { setEventBus } from './eventBus'
+import { initPlugins } from './plugins'
+import { setRequest } from './request'
 
 /**
  * Install
@@ -13,10 +16,19 @@ export default function install(Vue, options = {}) {
     return
   }
 
-  if (!Vue.prototype.$request) {
+  /*if (!Vue.prototype.$request) {
+   console.error('Please provide a request!')
+   return
+   }*/
+
+  if (!options.request) {
     console.error('Please provide a request!')
     return
   }
+
+  setEventBus(new Vue())
+  setRequest(options.request)
+  initPlugins(Vue)
 
   Vue.component('file-manager', FileManager)
 

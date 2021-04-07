@@ -46,7 +46,7 @@ export default {
      * Listen events
      * 'contextMenu'
      */
-    EventBus.$on('contextMenu', event => this.showMenu(event))
+    EventBus().$on('contextMenu', event => this.showMenu(event))
   },
   computed: {
     /**

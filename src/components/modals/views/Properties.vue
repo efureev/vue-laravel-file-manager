@@ -11,27 +11,25 @@
         <div class="col-2">{{ lang.modal.properties.disk }}:</div>
         <div class="col-9">{{ selectedDisk }}</div>
         <div class="col-1 text-right">
-          <i v-on:click="copyToClipboard(selectedDisk)"
-             v-bind:title="lang.clipboard.copy"
-             class="far fa-copy"/>
+          <i v-on:click="copyToClipboard(selectedDisk)" v-bind:title="lang.clipboard.copy" class="far fa-copy" />
         </div>
       </div>
       <div class="row">
         <div class="col-2">{{ lang.modal.properties.name }}:</div>
         <div class="col-9">{{ selectedItem.basename }}</div>
         <div class="col-1 text-right">
-          <i v-on:click="copyToClipboard(selectedItem.basename)"
-             v-bind:title="lang.clipboard.copy"
-             class="far fa-copy"/>
+          <i
+            v-on:click="copyToClipboard(selectedItem.basename)"
+            v-bind:title="lang.clipboard.copy"
+            class="far fa-copy"
+          />
         </div>
       </div>
       <div class="row">
         <div class="col-2">{{ lang.modal.properties.path }}:</div>
         <div class="col-9">{{ selectedItem.path }}</div>
         <div class="col-1 text-right">
-          <i v-on:click="copyToClipboard(selectedItem.path)"
-             v-bind:title="lang.clipboard.copy"
-             class="far fa-copy"/>
+          <i v-on:click="copyToClipboard(selectedItem.path)" v-bind:title="lang.clipboard.copy" class="far fa-copy" />
         </div>
       </div>
       <template v-if="selectedItem.type === 'file'">
@@ -39,9 +37,11 @@
           <div class="col-2">{{ lang.modal.properties.size }}:</div>
           <div class="col-9">{{ bytesToHuman(selectedItem.size) }}</div>
           <div class="col-1 text-right">
-            <i v-on:click="copyToClipboard(bytesToHuman(selectedItem.size))"
-               v-bind:title="lang.clipboard.copy"
-               class="far fa-copy"/>
+            <i
+              v-on:click="copyToClipboard(bytesToHuman(selectedItem.size))"
+              v-bind:title="lang.clipboard.copy"
+              class="far fa-copy"
+            />
           </div>
         </div>
         <div class="row">
@@ -49,16 +49,13 @@
           <div class="col-9">
             <span v-if="url">{{ url }}</span>
             <span v-else>
-                            <button v-on:click="getUrl" type="button"
-                                    class="btn btn-sm btn-light">
-                                <i class="fas fa-sm fa-link"/> Get URL
-                            </button>
-                        </span>
+              <button v-on:click="getUrl" type="button" class="btn btn-sm btn-light">
+                <i class="fas fa-sm fa-link" /> Get URL
+              </button>
+            </span>
           </div>
           <div v-if="url" class="col-1 text-right">
-            <i v-on:click="copyToClipboard(url)"
-               v-bind:title="lang.clipboard.copy"
-               class="far fa-copy"/>
+            <i v-on:click="copyToClipboard(url)" v-bind:title="lang.clipboard.copy" class="far fa-copy" />
           </div>
         </div>
       </template>
@@ -67,9 +64,11 @@
           <div class="col-2">{{ lang.modal.properties.modified }}:</div>
           <div class="col-9">{{ timestampToDate(selectedItem.timestamp) }}</div>
           <div class="col-1 text-right">
-            <i v-on:click="copyToClipboard(timestampToDate(selectedItem.timestamp))"
-               v-bind:title="lang.clipboard.copy"
-               class="far fa-copy"/>
+            <i
+              v-on:click="copyToClipboard(timestampToDate(selectedItem.timestamp))"
+              v-bind:title="lang.clipboard.copy"
+              class="far fa-copy"
+            />
           </div>
         </div>
       </template>
@@ -119,12 +118,14 @@ export default {
      * Get URL
      */
     getUrl() {
-      this.$store.dispatch('fm/url', {
-        disk: this.selectedDisk,
-        path: this.selectedItem.path,
-      }).then((response) => {
-        this.url = response.data('url')
-      })
+      this.$store
+        .dispatch('fm/url', {
+          disk: this.selectedDisk,
+          path: this.selectedItem.path,
+        })
+        .then(response => {
+          this.url = response.data('url')
+        })
     },
 
     /**
@@ -145,7 +146,7 @@ export default {
       document.body.removeChild(copyInputHelper)
 
       // Notification
-      EventBus.$emit('addNotification', {
+      EventBus().$emit('addNotification', {
         status: 'success',
         message: this.lang.notifications.copyToClipboard,
       })

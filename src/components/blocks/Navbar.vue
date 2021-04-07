@@ -236,12 +236,12 @@ export default {
 
       // show notification
       if (type === 'cut') {
-        EventBus.$emit('addNotification', {
+        EventBus().$emit('addNotification', {
           status: 'success',
           message: this.lang.notifications.cutToClipboard,
         })
       } else if (type === 'copy') {
-        EventBus.$emit('addNotification', {
+        EventBus().$emit('addNotification', {
           status: 'success',
           message: this.lang.notifications.copyToClipboard,
         })

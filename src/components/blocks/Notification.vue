@@ -28,7 +28,7 @@ export default {
     /**
      * Listen 'addNotification' events
      */
-    EventBus.$on('addNotification', ({ status, message }) => this.addNotification(status, message))
+    EventBus().$on('addNotification', ({ status, message }) => this.addNotification(status, message))
   },
   methods: {
     /**

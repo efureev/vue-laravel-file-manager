@@ -1,4 +1,4 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 
 export default {
   /**
@@ -24,7 +24,8 @@ export default {
       state.lang = data.lang
     }
     if (data.translation) {
-      Vue.set(state.translations, data.translation.name, Object.freeze(data.translation.content))
+      // @todo
+      //Vue.set(state.translations, data.translation.name, Object.freeze(data.translation.content))
     }
   },
 

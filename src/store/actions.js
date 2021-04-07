@@ -15,7 +15,6 @@ export default {
   initializeApp({ state, commit, getters, dispatch }) {
     GET.initialize().then(response => {
       const configData = response.data()
-      // console.log(configData)
       // if (response.data.result.status === 'success') {
 
       commit('settings/initSettings', configData)

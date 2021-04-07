@@ -1,1 +1,5 @@
-import "./element-ui";
+import init from './element-ui'
+
+export function initPlugins(Vue) {
+  init(Vue)
+}

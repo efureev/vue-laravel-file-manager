@@ -1,4 +1,4 @@
-import request from '../request'
+import request, { instance as requestInstance } from '../request'
 
 export default {
   /**
@@ -6,8 +6,6 @@ export default {
    * @returns {*}
    */
   initialize() {
-    console.log(request().interceptors)
-
     return request().get('initialize')
   },
 
@@ -121,7 +119,7 @@ export default {
   },
 
   baseURL() {
-    return request().wrapper.config.baseURL
+    return requestInstance.manager.getLayer('fm').requestConfig.baseURL
   },
 
   makeURL(url) {

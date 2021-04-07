@@ -27,7 +27,7 @@ export default {
       // acl: null,
 
       // App version
-      version: '2.5.3',
+      version: '3.0.1',
 
       // axios headers
       headers: {},
@@ -100,7 +100,8 @@ export default {
             name: 'download',
             icon: 'fas fa-download',
           },
-        ], [
+        ],
+        [
           {
             name: 'copy',
             icon: 'far fa-copy',
@@ -125,12 +126,14 @@ export default {
             name: 'unzip',
             icon: 'far fa-file-archive',
           },
-        ], [
+        ],
+        [
           {
             name: 'delete',
             icon: 'far fa-trash-alt text-danger',
           },
-        ], [
+        ],
+        [
           {
             name: 'properties',
             icon: 'far fa-list-alt',
